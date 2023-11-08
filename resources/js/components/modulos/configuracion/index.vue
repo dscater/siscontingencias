@@ -105,20 +105,6 @@
                                         </el-descriptions-item>
                                         <el-descriptions-item>
                                             <template slot="label">
-                                                <i class="el-icon-message"></i>
-                                                Correo eléctronico pedido 1
-                                            </template>
-                                            {{ oConfiguracion.correo_pedido }}
-                                        </el-descriptions-item>
-                                        <el-descriptions-item>
-                                            <template slot="label">
-                                                <i class="el-icon-message"></i>
-                                                Correo eléctronico pedido 2
-                                            </template>
-                                            {{ oConfiguracion.correo_pedido2 }}
-                                        </el-descriptions-item>
-                                        <el-descriptions-item>
-                                            <template slot="label">
                                                 <i
                                                     class="el-icon-picture-outline-round"
                                                 ></i>
@@ -354,46 +340,6 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label
-                                        :class="{
-                                            'text-danger': errors.correo_pedido,
-                                        }"
-                                        >Correo eléctronico pedido 1</label
-                                    >
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        :class="{ 'is-invalid': errors.correo_pedido }"
-                                        placeholder="Correo eléctronico pedido 1"
-                                        v-model="oConfiguracion.correo_pedido"
-                                    />
-                                    <span
-                                        class="error invalid-feedback"
-                                        v-if="errors.correo_pedido"
-                                        v-text="errors.correo_pedido[0]"
-                                    ></span>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label
-                                        :class="{
-                                            'text-danger': errors.correo_pedido2,
-                                        }"
-                                        >Correo electrónico pedido 2</label
-                                    >
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        :class="{ 'is-invalid': errors.correo_pedido2 }"
-                                        placeholder="Correo electrónico pedido 2"
-                                        v-model="oConfiguracion.correo_pedido2"
-                                    />
-                                    <span
-                                        class="error invalid-feedback"
-                                        v-if="errors.correo_pedido2"
-                                        v-text="errors.correo_pedido2[0]"
-                                    ></span>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label
                                         :class="{ 'text-danger': errors.logo }"
                                         >Logo</label
                                     >
@@ -466,8 +412,6 @@ export default {
                 fono: "",
                 web: "",
                 correo: "",
-                correo_pedido: "",
-                correo_pedido2: "",
                 logo: "",
             },
             errors: [],
@@ -520,18 +464,6 @@ export default {
                 formdata.append(
                     "correo",
                     this.oConfiguracion.correo ? this.oConfiguracion.correo : ""
-                );
-                formdata.append(
-                    "correo_pedido",
-                    this.oConfiguracion.correo_pedido
-                        ? this.oConfiguracion.correo_pedido
-                        : ""
-                );
-                formdata.append(
-                    "correo_pedido2",
-                    this.oConfiguracion.correo_pedido2
-                        ? this.oConfiguracion.correo_pedido2
-                        : ""
                 );
                 formdata.append("logo", this.oConfiguracion.logo);
 
