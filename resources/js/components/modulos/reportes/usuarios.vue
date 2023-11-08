@@ -187,7 +187,7 @@ export default {
                 "Tipo de usuario",
                 // "Rango de fechas",
             ],
-            listTipos: ["ADMINISTRADOR", "REPRESENTANTE", "SOCIO"],
+            listTipos: ["ADMINISTRADOR", "FUNCIONARIO"],
             errors: [],
         };
     },

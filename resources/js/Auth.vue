@@ -152,13 +152,13 @@ export default {
 
 <style>
 .login-page {
-    background: var(--principal);
+    background: var(--principal_transparent);
 }
 
 .login-page .card {
     border-radius: 0px;
     box-shadow: 0px 0px 1px 1px var(--red);
-    background: var(--transparente);
+    background: var(--principal);
 }
 .login-page .card-header {
     border-bottom: solid 1px var(--red);

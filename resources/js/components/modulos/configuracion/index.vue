@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Configuración</h1>
+                        <h1>Configurar Sistema</h1>
                     </div>
                 </div>
             </div>
@@ -23,7 +23,7 @@
                                                     'configuracion.edit'
                                                 )
                                             "
-                                            class="btn btn-warning bg-orange btn-flat btn-block"
+                                            class="btn btn-danger btn-flat btn-block"
                                             @click="muestra_modal = true"
                                         >
                                             <i class="el-icon-edit-outline"></i>
@@ -40,7 +40,7 @@
                                         :column="1"
                                         border
                                         :labelStyle="{
-                                            background: 'rgb(0, 123, 255)',
+                                            background: '#222222',
                                             width: '180px',
                                             color: 'white',
                                         }"
@@ -150,7 +150,7 @@
         >
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <div class="modal-header bg-orange">
+                    <div class="modal-header bg-dark">
                         <h4 class="modal-title" v-text="tituloModal"></h4>
                         <button
                             type="button"
@@ -425,8 +425,8 @@
                             Cerrar
                         </button>
                         <el-button
-                            type="orange"
-                            class="bg-orange"
+                            type="danger"
+                            class="bg-danger"
                             :loading="enviando"
                             @click="setRegistroModal()"
                             >{{ textoBtn }}</el-button
@@ -622,6 +622,6 @@ export default {
 
 <style>
 .el-descriptions-item__cell.el-descriptions-item__label.is-bordered-label {
-    background: var(--orange) !important;
+    background: var(--dark) !important;
 }
 </style>

@@ -81,6 +81,46 @@
                     >
                         ADMINISTRACIÓN:
                     </li>
+                    <li class="nav-item">
+                        <a
+                            href=""
+                            class="nav-link"
+                            v-loading.fullscreen.lock="fullscreenLoading"
+                        >
+                            <i class="nav-icon fas fa-list-alt"></i>
+                            <p>Plan de Contingencias</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            href=""
+                            class="nav-link"
+                            v-loading.fullscreen.lock="fullscreenLoading"
+                        >
+                            <i class="nav-icon fas fa-list"></i>
+                            <p>Roles y Funciones</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            href=""
+                            class="nav-link"
+                            v-loading.fullscreen.lock="fullscreenLoading"
+                        >
+                            <i class="nav-icon fas fa-list"></i>
+                            <p>Amenazas y Seguridad</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            href=""
+                            class="nav-link"
+                            v-loading.fullscreen.lock="fullscreenLoading"
+                        >
+                            <i class="nav-icon fas fa-list"></i>
+                            <p>Actividades de Contingencias</p>
+                        </a>
+                    </li>
                     <li
                         class="nav-item"
                         v-if="permisos.includes('usuarios.index')"
@@ -92,7 +132,7 @@
                             v-loading.fullscreen.lock="fullscreenLoading"
                         >
                             <i class="nav-icon fas fa-users"></i>
-                            <p>Usuarios</p>
+                            <p>Gestión de Usuarios</p>
                         </router-link>
                     </li>
                     <li
@@ -123,7 +163,7 @@
                             class="nav-link"
                         >
                             <i class="nav-icon fas fa-cog"></i>
-                            <p>Configuración</p>
+                            <p>Configurar Sistema</p>
                         </router-link>
                     </li>
                     <li class="nav-item">

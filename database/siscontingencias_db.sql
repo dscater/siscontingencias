@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 08-11-2023 a las 02:29:54
+-- Tiempo de generación: 08-11-2023 a las 14:28:35
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 7.4.19
 
@@ -69,6 +69,16 @@ CREATE TABLE `historial_accions` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `historial_accions`
+--
+
+INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `datos_original`, `datos_nuevo`, `modulo`, `fecha`, `hora`, `created_at`, `updated_at`) VALUES
+(1, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN USUARIO', 'id: 2<br/>usuario: JPERES<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 1234<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>correo: <br/>fono: 777777<br/>tipo: FUNCIONARIO<br/>foto: 1699452109_JPERES.jpg<br/>password: $2y$10$DVPM4sWlTtbQNeDi6Kh.6uuUxAnY6ovk4KUFPPZTqj8VzvJ.fvLjm<br/>acceso: 1<br/>fecha_registro: 2023-11-08<br/>created_at: 2023-11-08 10:01:49<br/>updated_at: 2023-11-08 10:01:49<br/>', NULL, 'USUARIOS', '2023-11-08', '10:01:49', '2023-11-08 14:01:49', '2023-11-08 14:01:49'),
+(2, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO', 'id: 2<br/>usuario: JPERES<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 1234<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>correo: <br/>fono: 777777<br/>tipo: FUNCIONARIO<br/>foto: 1699452109_JPERES.jpg<br/>password: $2y$10$DVPM4sWlTtbQNeDi6Kh.6uuUxAnY6ovk4KUFPPZTqj8VzvJ.fvLjm<br/>acceso: 1<br/>fecha_registro: 2023-11-08<br/>created_at: 2023-11-08 10:01:49<br/>updated_at: 2023-11-08 10:01:49<br/>', 'id: 2<br/>usuario: JPERES<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 1234<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>correo: <br/>fono: 777777<br/>tipo: FUNCIONARIO<br/>foto: 1699452109_JPERES.jpg<br/>password: $2y$10$DVPM4sWlTtbQNeDi6Kh.6uuUxAnY6ovk4KUFPPZTqj8VzvJ.fvLjm<br/>acceso: 0<br/>fecha_registro: 2023-11-08<br/>created_at: 2023-11-08 10:01:49<br/>updated_at: 2023-11-08 10:02:54<br/>', 'USUARIOS', '2023-11-08', '10:02:54', '2023-11-08 14:02:54', '2023-11-08 14:02:54'),
+(3, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO', 'id: 2<br/>usuario: JPERES<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 1234<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>correo: <br/>fono: 777777<br/>tipo: FUNCIONARIO<br/>foto: 1699452109_JPERES.jpg<br/>password: $2y$10$DVPM4sWlTtbQNeDi6Kh.6uuUxAnY6ovk4KUFPPZTqj8VzvJ.fvLjm<br/>acceso: 0<br/>fecha_registro: 2023-11-08<br/>created_at: 2023-11-08 10:01:49<br/>updated_at: 2023-11-08 10:02:54<br/>', 'id: 2<br/>usuario: JPERES<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 1234<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>correo: <br/>fono: 777777<br/>tipo: ADMINISTRADOR<br/>foto: 1699452109_JPERES.jpg<br/>password: $2y$10$DVPM4sWlTtbQNeDi6Kh.6uuUxAnY6ovk4KUFPPZTqj8VzvJ.fvLjm<br/>acceso: 0<br/>fecha_registro: 2023-11-08<br/>created_at: 2023-11-08 10:01:49<br/>updated_at: 2023-11-08 10:02:58<br/>', 'USUARIOS', '2023-11-08', '10:02:58', '2023-11-08 14:02:58', '2023-11-08 14:02:58'),
+(4, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO', 'id: 2<br/>usuario: JPERES<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 1234<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>correo: <br/>fono: 777777<br/>tipo: ADMINISTRADOR<br/>foto: 1699452109_JPERES.jpg<br/>password: $2y$10$DVPM4sWlTtbQNeDi6Kh.6uuUxAnY6ovk4KUFPPZTqj8VzvJ.fvLjm<br/>acceso: 0<br/>fecha_registro: 2023-11-08<br/>created_at: 2023-11-08 10:01:49<br/>updated_at: 2023-11-08 10:02:58<br/>', 'id: 2<br/>usuario: JPERES<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 1234<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>correo: <br/>fono: 777777<br/>tipo: FUNCIONARIO<br/>foto: 1699452109_JPERES.jpg<br/>password: $2y$10$DVPM4sWlTtbQNeDi6Kh.6uuUxAnY6ovk4KUFPPZTqj8VzvJ.fvLjm<br/>acceso: 1<br/>fecha_registro: 2023-11-08<br/>created_at: 2023-11-08 10:01:49<br/>updated_at: 2023-11-08 10:03:03<br/>', 'USUARIOS', '2023-11-08', '10:03:03', '2023-11-08 14:03:03', '2023-11-08 14:03:03');
 
 -- --------------------------------------------------------
 
@@ -141,7 +151,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `usuario`, `nombre`, `paterno`, `materno`, `ci`, `ci_exp`, `dir`, `correo`, `fono`, `tipo`, `foto`, `password`, `acceso`, `fecha_registro`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin', 'admin', NULL, '0', '', '', NULL, '', 'ADMINISTRADOR', NULL, '$2y$10$RrCZZySOwPej2gMFWsrjMe6dLzfaL5Q88h4J75I1FesEBRNPwq1x.', 1, '2023-11-01', NULL, NULL);
+(1, 'admin', 'admin', 'admin', NULL, '0', '', '', NULL, '', 'ADMINISTRADOR', NULL, '$2y$10$RrCZZySOwPej2gMFWsrjMe6dLzfaL5Q88h4J75I1FesEBRNPwq1x.', 1, '2023-11-01', NULL, NULL),
+(2, 'JPERES', 'JUAN', 'PERES', 'MAMANI', '1234', 'LP', 'LOS OLIVOS', NULL, '777777', 'FUNCIONARIO', '1699452109_JPERES.jpg', '$2y$10$DVPM4sWlTtbQNeDi6Kh.6uuUxAnY6ovk4KUFPPZTqj8VzvJ.fvLjm', 1, '2023-11-08', '2023-11-08 14:01:49', '2023-11-08 14:03:03');
 
 --
 -- Índices para tablas volcadas
@@ -194,7 +205,7 @@ ALTER TABLE `configuracions`
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -212,7 +223,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

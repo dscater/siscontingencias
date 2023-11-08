@@ -18,14 +18,11 @@ class UserController extends Controller
         'paterno' => 'required|min:4',
         'ci' => 'required|numeric|digits_between:4, 20|unique:users,ci',
         'ci_exp' => 'required',
-        'fecha_nac' => 'required|date',
-        'genero' => 'required',
-        'cargo' => 'required',
-        'fecha_ingreso' => 'required|date',
-        'taller' => 'required',
-        'estado' => 'required',
+        'dir' => 'required',
         'fono' => 'required',
         'dir' => 'required',
+        'tipo' => 'required',
+        'acceso' => 'required',
     ];
 
     public $mensajes = [
@@ -72,12 +69,6 @@ class UserController extends Controller
     {
         if ($request->hasFile('foto')) {
             $this->validacion['foto'] = 'image|mimes:jpeg,jpg,png|max:2048';
-        }
-
-        if ($request["tipo_personal"] == "SOCIO") {
-            $this->validacion['tipo'] = 'required';
-        } else {
-            $request["tipo"] = 'NINGUNO';
         }
 
         $request->validate($this->validacion, $this->mensajes);
@@ -140,11 +131,6 @@ class UserController extends Controller
         $this->validacion['ci'] = 'required|min:4|numeric|unique:users,ci,' . $usuario->id;
         if ($request->hasFile('foto')) {
             $this->validacion['foto'] = 'image|mimes:jpeg,jpg,png|max:2048';
-        }
-        if ($request["tipo_personal"] == "SOCIO") {
-            $this->validacion['tipo'] = 'required';
-        } else {
-            $request["tipo"] = 'NINGUNO';
         }
 
         $request->validate($this->validacion, $this->mensajes);
@@ -351,6 +337,35 @@ class UserController extends Controller
     {
         $tipo = Auth::user()->tipo;
         $array_infos = [];
+        $array_infos[] = [
+            'label' => 'Plan de Contingencias',
+            'cantidad' => 0,
+            'color' => 'bg-dark',
+            'icon' => asset("imgs/checklist.png"),
+            "url" => "usuarios.index"
+        ];
+        $array_infos[] = [
+            'label' => 'Roles y Funciones',
+            'cantidad' => 0,
+            'color' => 'bg-dark',
+            'icon' => asset("imgs/icon_solicitud.png"),
+            "url" => "usuarios.index"
+        ];
+        $array_infos[] = [
+            'label' => 'Amenazas y Seguridad',
+            'cantidad' => 0,
+            'color' => 'bg-dark',
+            'icon' => asset("imgs/icon_recursos.png"),
+            "url" => "usuarios.index"
+        ];
+        $array_infos[] = [
+            'label' => 'Actividades de Contingencias',
+            'cantidad' => 0,
+            'color' => 'bg-dark',
+            'icon' => asset("imgs/icon_recursos.png"),
+            "url" => "usuarios.index"
+        ];
+
         if (in_array('usuarios.index', $this->permisos[$tipo])) {
             $array_infos[] = [
                 'label' => 'Usuarios',

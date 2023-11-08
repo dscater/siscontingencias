@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Usuarios</h1>
+                        <h1>Gestión de Usuarios</h1>
                     </div>
                 </div>
             </div>
@@ -120,7 +120,7 @@
                                                         v-else
                                                         class="badge badge-danger"
                                                     >
-                                                        DESHABILITADO
+                                                        INHABILITADO
                                                     </span>
                                                 </template>
                                                 <template #cell(mas)="row">
@@ -147,72 +147,6 @@
                                                                 sm="3"
                                                                 class="text-sm-right"
                                                                 ><b
-                                                                    >Fecha de
-                                                                    nacimiento:</b
-                                                                ></b-col
-                                                            >
-                                                            <b-col>{{
-                                                                row.item
-                                                                    .fecha_nac
-                                                            }}</b-col>
-                                                        </b-row>
-                                                        <b-row class="mb-2">
-                                                            <b-col
-                                                                sm="3"
-                                                                class="text-sm-right"
-                                                                ><b
-                                                                    >Genero:</b
-                                                                ></b-col
-                                                            >
-                                                            <b-col>{{
-                                                                row.item.genero
-                                                            }}</b-col>
-                                                        </b-row>
-                                                        <b-row class="mb-2">
-                                                            <b-col
-                                                                sm="3"
-                                                                class="text-sm-right"
-                                                                ><b
-                                                                    >Cargo:</b
-                                                                ></b-col
-                                                            >
-                                                            <b-col>{{
-                                                                row.item.cargo
-                                                            }}</b-col>
-                                                        </b-row>
-                                                        <b-row class="mb-2">
-                                                            <b-col
-                                                                sm="3"
-                                                                class="text-sm-right"
-                                                                ><b
-                                                                    >Fecha de
-                                                                    ingreso:</b
-                                                                ></b-col
-                                                            >
-                                                            <b-col>{{
-                                                                row.item
-                                                                    .fecha_ingreso
-                                                            }}</b-col>
-                                                        </b-row>
-                                                        <b-row class="mb-2">
-                                                            <b-col
-                                                                sm="3"
-                                                                class="text-sm-right"
-                                                                ><b
-                                                                    >Taller al
-                                                                    que
-                                                                    pertenece:</b
-                                                                ></b-col
-                                                            >
-                                                            <b-col>{{
-                                                                row.item.taller
-                                                            }}</b-col>
-                                                        </b-row>
-                                                        <b-row class="mb-2">
-                                                            <b-col
-                                                                sm="3"
-                                                                class="text-sm-right"
-                                                                ><b
                                                                     >Dirección:</b
                                                                 ></b-col
                                                             >
@@ -232,49 +166,6 @@
                                                                 row.item.fono
                                                             }}</b-col>
                                                         </b-row>
-                                                        <b-row class="mb-2">
-                                                            <b-col
-                                                                sm="3"
-                                                                class="text-sm-right"
-                                                                ><b
-                                                                    >Tipo de
-                                                                    Usuarios:</b
-                                                                ></b-col
-                                                            >
-                                                            <b-col>{{
-                                                                row.item
-                                                                    .tipo_Usuarios
-                                                            }}</b-col>
-                                                        </b-row>
-                                                        <b-row class="mb-2">
-                                                            <b-col
-                                                                sm="3"
-                                                                class="text-sm-right"
-                                                                ><b
-                                                                    >Porcentaje
-                                                                    de
-                                                                    discapacidad(%):</b
-                                                                ></b-col
-                                                            >
-                                                            <b-col>{{
-                                                                row.item
-                                                                    .p_discapacidad
-                                                            }}</b-col>
-                                                        </b-row>
-                                                        <b-row class="mb-2">
-                                                            <b-col
-                                                                sm="3"
-                                                                class="text-sm-right"
-                                                                ><b
-                                                                    >Validez del
-                                                                    credencial:</b
-                                                                ></b-col
-                                                            >
-                                                            <b-col>{{
-                                                                row.item
-                                                                    .validez_credencial
-                                                            }}</b-col>
-                                                        </b-row>
                                                         <b-button
                                                             size="sm"
                                                             variant="danger"
@@ -291,22 +182,6 @@
                                                         class="row justify-content-between"
                                                     >
                                                         <b-button
-                                                            size="sm"
-                                                            pill
-                                                            variant="outline-primary"
-                                                            class="btn-flat btn-block"
-                                                            title="Exportar credencial"
-                                                            @click="
-                                                                imprimirCredencial(
-                                                                    row.item.id
-                                                                )
-                                                            "
-                                                        >
-                                                            <i
-                                                                class="fa fa-id-card"
-                                                            ></i>
-                                                        </b-button>
-                                                        <b-button
                                                             v-if="
                                                                 permisos.includes(
                                                                     'usuarios.edit'
@@ -314,7 +189,7 @@
                                                             "
                                                             size="sm"
                                                             pill
-                                                            variant="outline-danger"
+                                                            variant="outline-warning"
                                                             class="btn-flat btn-block"
                                                             title="Editar registro"
                                                             @click="
@@ -424,7 +299,6 @@ export default {
                 { key: "full_ci", label: "C.I.", sortable: true },
                 { key: "tipo", label: "Tipo Usuario", sortable: true },
                 { key: "foto", label: "Foto" },
-                { key: "estado", label: "Estado" },
                 {
                     key: "fecha_registro_t",
                     label: "Fecha de registro",
@@ -448,20 +322,10 @@ export default {
                 materno: "",
                 ci: "",
                 ci_exp: "",
-                fecha_nac: "",
-                genero: "",
-                cargo: "",
-                fecha_ingreso: "",
-                taller: "",
                 dir: "",
                 fono: [],
-                tipo_Usuarios: "",
-                p_discapacidad: "",
                 tipo: "",
                 foto: null,
-                validez_credencial: "",
-                password: "",
-                estado: "",
                 acceso: "",
             },
             currentPage: 1,
@@ -491,26 +355,9 @@ export default {
             this.oUsuario.materno = item.materno ? item.materno : "";
             this.oUsuario.ci = item.ci ? item.ci : "";
             this.oUsuario.ci_exp = item.ci_exp ? item.ci_exp : "";
-            this.oUsuario.fecha_nac = item.fecha_nac ? item.fecha_nac : "";
-            this.oUsuario.genero = item.genero ? item.genero : "";
-            this.oUsuario.cargo = item.cargo ? item.cargo : "";
-            this.oUsuario.fecha_ingreso = item.fecha_ingreso
-                ? item.fecha_ingreso
-                : "";
-            this.oUsuario.taller = item.taller ? item.taller : "";
             this.oUsuario.dir = item.dir ? item.dir : "";
             this.oUsuario.fono = item.fono ? item.fono.split("; ") : "";
-            this.oUsuario.tipo_Usuarios = item.tipo_Usuarios
-                ? item.tipo_Usuarios
-                : "";
-            this.oUsuario.p_discapacidad = item.p_discapacidad
-                ? item.p_discapacidad
-                : "0";
             this.oUsuario.tipo = item.tipo ? item.tipo : "";
-            this.oUsuario.validez_credencial = item.validez_credencial
-                ? item.validez_credencial
-                : "";
-            this.oUsuario.estado = item.estado ? "" + item.estado : "0";
             this.oUsuario.acceso = item.acceso ? "" + item.acceso : "0";
             this.modal_accion = "edit";
             this.muestra_modal = true;
@@ -532,26 +379,6 @@ export default {
                     this.showOverlay = false;
                     this.listRegistros = res.data.usuarios;
                     this.totalRows = res.data.total;
-                });
-        },
-        imprimirCredencial(id) {
-            let config = {
-                responseType: "blob",
-            };
-            axios
-                .post(
-                    main_url + "/admin/usuarios/imprimirCredencial/" + id,
-                    null,
-                    config
-                )
-                .then((res) => {
-                    this.errors = [];
-                    this.enviando = false;
-                    let pdfBlob = new Blob([res.data], {
-                        type: "application/pdf",
-                    });
-                    let urlReporte = URL.createObjectURL(pdfBlob);
-                    window.open(urlReporte);
                 });
         },
         eliminaUsuario(id, descripcion) {
@@ -624,19 +451,10 @@ export default {
             this.oUsuario.materno = "";
             this.oUsuario.ci = "";
             this.oUsuario.ci_exp = "";
-            this.oUsuario.fecha_nac = "";
-            this.oUsuario.genero = "";
-            this.oUsuario.cargo = "";
-            this.oUsuario.fecha_ingreso = "";
-            this.oUsuario.taller = "";
             this.oUsuario.dir = "";
             this.oUsuario.fono = [];
-            this.oUsuario.tipo_Usuarios = "";
-            this.oUsuario.p_discapacidad = "";
             this.oUsuario.tipo = "";
             this.oUsuario.foto = null;
-            this.oUsuario.validez_credencial = "";
-            this.oUsuario.estado = "0";
             this.oUsuario.acceso = "0";
         },
         formatoFecha(date) {
