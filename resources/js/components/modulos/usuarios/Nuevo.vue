@@ -318,7 +318,7 @@ export default {
     computed: {
         tituloModal() {
             if (this.accion == "nuevo") {
-                return "AGREGAR PERSONAL";
+                return "AGREGAR USUARIO";
             } else {
                 return "MODIFICAR REGISTRO";
             }
