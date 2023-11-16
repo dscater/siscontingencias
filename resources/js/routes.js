@@ -44,6 +44,32 @@ export default new Router({
                     .default,
         },
 
+        // roles_funciones
+        {
+            path: "/roles_funciones",
+            name: "roles_funciones.index",
+            component: require("./components/modulos/roles_funciones/index.vue")
+                .default,
+        },
+
+        // amenazas_seguridad
+        {
+            path: "/amenazas_seguridad",
+            name: "amenazas_seguridad.index",
+            component:
+                require("./components/modulos/amenazas_seguridad/index.vue")
+                    .default,
+        },
+
+        // actividades_contingencias
+        {
+            path: "/actividades_contingencias",
+            name: "actividades_contingencias.index",
+            component:
+                require("./components/modulos/actividades_contingencias/index.vue")
+                    .default,
+        },
+
         // Configuración
         {
             path: "/configuracion",

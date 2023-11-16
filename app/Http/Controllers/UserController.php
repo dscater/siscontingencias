@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActividadContingencia;
+use App\Models\AmenazaSeguridad;
 use App\Models\HistorialAccion;
+use App\Models\PlanContingencia;
+use App\Models\RolFuncion;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -55,12 +59,32 @@ class UserController extends Controller
             'plan_contingencias.edit',
             'plan_contingencias.destroy',
 
+            'roles_funciones.index',
+            'roles_funciones.create',
+            'roles_funciones.edit',
+            'roles_funciones.destroy',
+
+            'amenazas_seguridad.index',
+            'amenazas_seguridad.create',
+            'amenazas_seguridad.edit',
+            'amenazas_seguridad.destroy',
+
+            'actividades_contingencias.index',
+            'actividades_contingencias.create',
+            'actividades_contingencias.edit',
+            'actividades_contingencias.destroy',
+
             'configuracion.index',
             'configuracion.edit',
 
             "reportes.usuarios"
         ],
-        "FUNCIONARIO" => [],
+        "FUNCIONARIO" => [
+            'plan_contingencias.index',
+            'roles_funciones.index',
+            'amenazas_seguridad.index',
+            'actividades_contingencias.index',
+        ],
     ];
 
 
@@ -297,34 +321,47 @@ class UserController extends Controller
     {
         $tipo = Auth::user()->tipo;
         $array_infos = [];
-        $array_infos[] = [
-            'label' => 'Plan de Contingencias',
-            'cantidad' => 0,
-            'color' => 'bg-dark',
-            'icon' => asset("imgs/checklist.png"),
-            "url" => "usuarios.index"
-        ];
-        $array_infos[] = [
-            'label' => 'Roles y Funciones',
-            'cantidad' => 0,
-            'color' => 'bg-dark',
-            'icon' => asset("imgs/icon_solicitud.png"),
-            "url" => "usuarios.index"
-        ];
-        $array_infos[] = [
-            'label' => 'Amenazas y Seguridad',
-            'cantidad' => 0,
-            'color' => 'bg-dark',
-            'icon' => asset("imgs/icon_recursos.png"),
-            "url" => "usuarios.index"
-        ];
-        $array_infos[] = [
-            'label' => 'Actividades de Contingencias',
-            'cantidad' => 0,
-            'color' => 'bg-dark',
-            'icon' => asset("imgs/icon_recursos.png"),
-            "url" => "usuarios.index"
-        ];
+
+        if (in_array('plan_contingencias.index', $this->permisos[$tipo])) {
+            $plan_contingencias = PlanContingencia::all();
+            $array_infos[] = [
+                'label' => 'Plan de Contingencias',
+                'cantidad' => count($plan_contingencias),
+                'color' => 'bg-dark',
+                'icon' => asset("imgs/checklist.png"),
+                "url" => "usuarios.index"
+            ];
+        }
+        if (in_array('roles_funciones.index', $this->permisos[$tipo])) {
+            $roles_funciones = RolFuncion::all();
+            $array_infos[] = [
+                'label' => 'Roles y Funciones',
+                'cantidad' => count($roles_funciones),
+                'color' => 'bg-dark',
+                'icon' => asset("imgs/icon_solicitud.png"),
+                "url" => "usuarios.index"
+            ];
+        }
+        if (in_array('amenazas_seguridad.index', $this->permisos[$tipo])) {
+            $amenazas_seguridad = AmenazaSeguridad::all();
+            $array_infos[] = [
+                'label' => 'Amenazas y Seguridad',
+                'cantidad' => count($amenazas_seguridad),
+                'color' => 'bg-dark',
+                'icon' => asset("imgs/icon_recursos.png"),
+                "url" => "usuarios.index"
+            ];
+        }
+        if (in_array('actividades_contingencias.index', $this->permisos[$tipo])) {
+            $actividades_contingencias = ActividadContingencia::all();
+            $array_infos[] = [
+                'label' => 'Actividades de Contingencias',
+                'cantidad' => count($actividades_contingencias),
+                'color' => 'bg-dark',
+                'icon' => asset("imgs/icon_recursos.png"),
+                "url" => "usuarios.index"
+            ];
+        }
 
         if (in_array('usuarios.index', $this->permisos[$tipo])) {
             $array_infos[] = [

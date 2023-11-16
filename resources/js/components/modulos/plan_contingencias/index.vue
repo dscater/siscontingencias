@@ -90,10 +90,12 @@
                             </b-col>
                         </b-row>
                     </template>
-                    <div class="row">
+                    <div class="row" v-if="totalRows > 0">
                         <div class="col-md-12" v-for="item in listRegistros">
                             <div class="card">
-                                <div class="card-header bg-dark font-weight-bold">
+                                <div
+                                    class="card-header bg-dark font-weight-bold"
+                                >
                                     {{ item.titulo }}
                                 </div>
                                 <div
@@ -101,6 +103,14 @@
                                     v-html="item.descripcion"
                                 ></div>
                                 <div
+                                    v-if="
+                                        permisos.includes(
+                                            'plan_contingencias.edit'
+                                        ) ||
+                                        permisos.includes(
+                                            'plan_contingencias.destroy'
+                                        )
+                                    "
                                     class="card-footer d-flex justify-content-end"
                                 >
                                     <button
@@ -126,9 +136,16 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row" v-else>
+                        <div class="col-md-12">
+                            <h4 class="w-100 text-center text-gray">
+                                NO SE ENCONTRARON REGISTROS
+                            </h4>
+                        </div>
+                    </div>
                 </b-skeleton-wrapper>
 
-                <div class="row">
+                <div class="row" v-if="totalRows > 0">
                     <b-col
                         sm="6"
                         md="2"
@@ -164,7 +181,10 @@ export default {
     data() {
         return {
             user: JSON.parse(localStorage.getItem("user")),
-            permisos: localStorage.getItem("permisos"),
+            permisos:
+                typeof localStorage.getItem("permisos") == "string"
+                    ? JSON.parse(localStorage.getItem("permisos"))
+                    : JSON.parse(localStorage.getItem("permisos")),
             search: "",
             listRegistros: [],
             loading: false,
@@ -199,9 +219,11 @@ export default {
         // Seleccionar Opciones de Tabla
         editarRegistro(item) {
             this.oPlanContingencia.id = item.id;
-            this.oPlanContingencia.titulo = item.titulo ? item.titulo : "";
+            this.oPlanContingencia.titulo = item.titulo
+                ? this.reemplazaBr(item.titulo)
+                : "";
             this.oPlanContingencia.descripcion = item.descripcion
-                ? item.descripcion
+                ? this.reemplazaBr(item.descripcion)
                 : "";
             this.modal_accion = "edit";
             this.muestra_modal = true;

@@ -79,12 +79,17 @@
                         class="nav-header font-weight-bold"
                         v-if="
                             permisos.includes('usuarios.index') ||
-                            permisos.includes('plan_contingencias.index')
+                            permisos.includes('plan_contingencias.index') ||
+                            permisos.includes('roles_funciones.index') ||
+                            permisos.includes('actividades_contingencias.index')
                         "
                     >
                         ADMINISTRACIÓN:
                     </li>
-                    <li class="nav-item">
+                    <li
+                        class="nav-item"
+                        v-if="permisos.includes('plan_contingencias.index')"
+                    >
                         <router-link
                             :to="{ name: 'plan_contingencias.index' }"
                             class="nav-link"
@@ -94,35 +99,46 @@
                             <p>Plan de Contingencias</p>
                         </router-link>
                     </li>
-                    <li class="nav-item">
-                        <a
-                            href=""
+                    <li
+                        class="nav-item"
+                        v-if="permisos.includes('roles_funciones.index')"
+                    >
+                        <router-link
+                            :to="{ name: 'roles_funciones.index' }"
                             class="nav-link"
                             v-loading.fullscreen.lock="fullscreenLoading"
                         >
                             <i class="nav-icon fas fa-list"></i>
                             <p>Roles y Funciones</p>
-                        </a>
+                        </router-link>
                     </li>
-                    <li class="nav-item">
-                        <a
-                            href=""
+                    <li
+                        class="nav-item"
+                        v-if="permisos.includes('amenazas_seguridad.index')"
+                    >
+                        <router-link
+                            :to="{ name: 'amenazas_seguridad.index' }"
                             class="nav-link"
                             v-loading.fullscreen.lock="fullscreenLoading"
                         >
                             <i class="nav-icon fas fa-list"></i>
                             <p>Amenazas y Seguridad</p>
-                        </a>
+                        </router-link>
                     </li>
-                    <li class="nav-item">
-                        <a
-                            href=""
+                    <li
+                        class="nav-item"
+                        v-if="
+                            permisos.includes('actividades_contingencias.index')
+                        "
+                    >
+                        <router-link
+                            :to="{ name: 'actividades_contingencias.index' }"
                             class="nav-link"
                             v-loading.fullscreen.lock="fullscreenLoading"
                         >
                             <i class="nav-icon fas fa-list"></i>
                             <p>Actividades de Contingencias</p>
-                        </a>
+                        </router-link>
                     </li>
                     <li
                         class="nav-item"

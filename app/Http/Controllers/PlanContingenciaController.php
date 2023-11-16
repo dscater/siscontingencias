@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\DB;
 
 class PlanContingenciaController extends Controller
 {
-
     public $validacion = [
         'titulo' => 'required|min:2',
         'descripcion' => 'required|min:2',
