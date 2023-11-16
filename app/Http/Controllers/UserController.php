@@ -329,7 +329,7 @@ class UserController extends Controller
                 'cantidad' => count($plan_contingencias),
                 'color' => 'bg-dark',
                 'icon' => asset("imgs/checklist.png"),
-                "url" => "usuarios.index"
+                "url" => "plan_contingencias.index"
             ];
         }
         if (in_array('roles_funciones.index', $this->permisos[$tipo])) {
@@ -339,7 +339,7 @@ class UserController extends Controller
                 'cantidad' => count($roles_funciones),
                 'color' => 'bg-dark',
                 'icon' => asset("imgs/icon_solicitud.png"),
-                "url" => "usuarios.index"
+                "url" => "roles_funciones.index"
             ];
         }
         if (in_array('amenazas_seguridad.index', $this->permisos[$tipo])) {
@@ -349,7 +349,7 @@ class UserController extends Controller
                 'cantidad' => count($amenazas_seguridad),
                 'color' => 'bg-dark',
                 'icon' => asset("imgs/icon_recursos.png"),
-                "url" => "usuarios.index"
+                "url" => "amenazas_seguridad.index"
             ];
         }
         if (in_array('actividades_contingencias.index', $this->permisos[$tipo])) {
@@ -359,7 +359,7 @@ class UserController extends Controller
                 'cantidad' => count($actividades_contingencias),
                 'color' => 'bg-dark',
                 'icon' => asset("imgs/icon_recursos.png"),
-                "url" => "usuarios.index"
+                "url" => "actividades_contingencias.index"
             ];
         }
 
