@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\ActividadContingenciaController;
+use App\Http\Controllers\AmenazaSeguridadController;
 use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PlanContingenciaController;
 use App\Http\Controllers\ReporteController;
+use App\Http\Controllers\RolFuncionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +23,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('admin')->group(function () {
         // Usuarios
-        Route::post('usuarios/imprimirCredencial/{usuario}', [UserController::class, 'imprimirCredencial']);
+        Route::post('usuarios/updatePassword/{usuario}', [UserController::class, 'updatePassword']);
         Route::get('usuarios/getUsuarioTipo', [UserController::class, 'getUsuarioTipo']);
         Route::get('usuarios/getUsuario/{usuario}', [UserController::class, 'getUsuario']);
         Route::patch('usuarios/asignarConfiguracion/{usuario}', [UserController::class, 'asignarConfiguracion']);
@@ -33,9 +37,21 @@ Route::middleware(['auth'])->group(function () {
             'index', 'store', 'update', 'destroy', 'show'
         ]);
 
-        // Route::resource('repositorios', RepositorioController::class)->only([
-        //     'index', 'store', 'update', 'destroy', 'show'
-        // ]);
+        Route::resource('plan_contingencias', PlanContingenciaController::class)->only([
+            'index', 'store', 'update', 'destroy', 'show'
+        ]);
+
+        Route::resource('roles_funciones', RolFuncionController::class)->only([
+            'index', 'store', 'update', 'destroy', 'show'
+        ]);
+
+        Route::resource('amenazas_seguridad', AmenazaSeguridadController::class)->only([
+            'index', 'store', 'update', 'destroy', 'show'
+        ]);
+
+        Route::resource('actividades_contingencias', ActividadContingenciaController::class)->only([
+            'index', 'store', 'update', 'destroy', 'show'
+        ]);
 
         // REPORTES
         Route::post('reportes/usuarios', [ReporteController::class, 'usuarios']);

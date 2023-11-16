@@ -77,19 +77,22 @@
                     </li>
                     <li
                         class="nav-header font-weight-bold"
-                        v-if="permisos.includes('usuarios.index')"
+                        v-if="
+                            permisos.includes('usuarios.index') ||
+                            permisos.includes('plan_contingencias.index')
+                        "
                     >
                         ADMINISTRACIÓN:
                     </li>
                     <li class="nav-item">
-                        <a
-                            href=""
+                        <router-link
+                            :to="{ name: 'plan_contingencias.index' }"
                             class="nav-link"
                             v-loading.fullscreen.lock="fullscreenLoading"
                         >
                             <i class="nav-icon fas fa-list-alt"></i>
                             <p>Plan de Contingencias</p>
-                        </a>
+                        </router-link>
                     </li>
                     <li class="nav-item">
                         <a

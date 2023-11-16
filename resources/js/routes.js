@@ -35,6 +35,15 @@ export default new Router({
                 .default,
         },
 
+        // Plan Contingencias
+        {
+            path: "/plan_contingencias",
+            name: "plan_contingencias.index",
+            component:
+                require("./components/modulos/plan_contingencias/index.vue")
+                    .default,
+        },
+
         // Configuración
         {
             path: "/configuracion",

@@ -53433,23 +53433,6 @@ a.text-muted:hover {
     border-color: var(--principal) !important;
 }
 
-.btn-warning {
-    color: #1f2d3d !important;
-    background-color: var(--principal) !important;
-    border-color: var(--principal) !important;
-}
-
-.btn-warning:hover {
-    background-color: var(--principal_hover) !important;
-}
-
-.border-orange {
-    border-color: var(--principal) !important;
-}
-
-.badge-warning {
-    color: white;
-}
 
 /* .el-button--warning.is-disabled,
 .el-button--warning.is-disabled:active,
@@ -53604,8 +53587,14 @@ input.form-control {
 }
 
 .page-item.active .page-link {
-    background-color: var(--principal);
-    border-color: var(--principal);
+    background-color: var(--secundario);
+    border-color: var(--secundario);
+}
+
+.page-item.active .page-link:focus,
+.page-item.active .page-link:active {
+    box-shadow: none;
+    outline: none;
 }
 
 .small-box .informacion {

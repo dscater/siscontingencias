@@ -75,6 +75,10 @@
                                                 :items="listRegistros"
                                                 show-empty
                                                 stacked="md"
+                                                :head-variant="'dark'"
+                                                no-border-collapse
+                                                bordered
+                                                hover
                                                 responsive
                                                 :current-page="currentPage"
                                                 :per-page="perPage"
@@ -200,6 +204,22 @@
                                                         >
                                                             <i
                                                                 class="fa fa-edit"
+                                                            ></i>
+                                                        </b-button>
+                                                        <b-button
+                                                            size="sm"
+                                                            pill
+                                                            variant="outline-info"
+                                                            class="btn-flat btn-block"
+                                                            title="Cambiar contraseña"
+                                                            @click="
+                                                                cambiarPassword(
+                                                                    row.item
+                                                                )
+                                                            "
+                                                        >
+                                                            <i
+                                                                class="fa fa-key"
                                                             ></i>
                                                         </b-button>
                                                         <b-button
@@ -381,12 +401,54 @@ export default {
                     this.totalRows = res.data.total;
                 });
         },
+        cambiarPassword(item) {
+            Swal.fire({
+                title: "Modificar contraseña",
+                html: "Usuario: " + item.full_name,
+                input: "text",
+                inputAttributes: {
+                    minlength: 4,
+                },
+                showCancelButton: true,
+                confirmButtonColor: "#17a2b8",
+                confirmButtonText: "Actualizar",
+                cancelButtonText: "Cancelar",
+                preConfirm: (texto) => {
+                    if (texto.length >= 4) {
+                        return axios
+                            .post("/admin/usuarios/updatePassword/" + item.id, {
+                                password: texto,
+                            })
+                            .then((response) => {
+                                Swal.fire({
+                                    icon: "success",
+                                    title: response.data.message,
+                                    showConfirmButton: false,
+                                    timer: 1500,
+                                });
+                            })
+                            .catch((error) => {
+                                Swal.fire({
+                                    icon: "error",
+                                    title: "Ocurrío un error al enviar la contraseña",
+                                    confirmButtonColor: "#e0a800",
+                                    confirmButtonText: `<span class="text-black">Aceptar</span>`,
+                                });
+                            });
+                    } else {
+                        Swal.showValidationMessage(
+                            "El texto debe contener al menos 6 caracteres"
+                        );
+                    }
+                },
+            });
+        },
         eliminaUsuario(id, descripcion) {
             Swal.fire({
                 title: "¿Quierés eliminar este registro?",
                 html: `<strong>${descripcion}</strong>`,
                 showCancelButton: true,
-                confirmButtonColor: "#c57a40",
+                confirmButtonColor: "#c82333",
                 confirmButtonText: "Si, eliminar",
                 cancelButtonText: "No, cancelar",
                 denyButtonText: `No, cancelar`,
