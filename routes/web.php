@@ -70,6 +70,8 @@ Route::middleware(['auth'])->group(function () {
 
         // REPORTES
         Route::post('reportes/usuarios', [ReporteController::class, 'usuarios']);
+        Route::post('reportes/plan_contingencia', [ReporteController::class, 'plan_contingencia']);
+        Route::post('reportes/cantidad_plan_contingencia', [ReporteController::class, 'cantidad_plan_contingencia']);
     });
 });
 

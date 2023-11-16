@@ -87,6 +87,22 @@ export default new Router({
                 .default,
             props: true,
         },
+        {
+            path: "/reportes/plan_contingencia",
+            name: "reportes.plan_contingencia",
+            component:
+                require("./components/modulos/reportes/plan_contingencia.vue")
+                    .default,
+            props: true,
+        },
+        {
+            path: "/reportes/cantidad_plan_contingencia",
+            name: "reportes.cantidad_plan_contingencia",
+            component:
+                require("./components/modulos/reportes/cantidad_plan_contingencia.vue")
+                    .default,
+            props: true,
+        },
 
         // PÁGINA NO ENCONTRADA
         {

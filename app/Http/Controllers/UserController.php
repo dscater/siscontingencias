@@ -77,7 +77,9 @@ class UserController extends Controller
             'configuracion.index',
             'configuracion.edit',
 
-            "reportes.usuarios"
+            "reportes.usuarios",
+            "reportes.plan_contingencia",
+            "reportes.cantidad_plan_contingencia",
         ],
         "FUNCIONARIO" => [
             'plan_contingencias.index',

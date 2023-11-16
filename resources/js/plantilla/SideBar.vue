@@ -156,7 +156,13 @@
                     </li>
                     <li
                         class="nav-header font-weight-bold"
-                        v-if="permisos.includes('reportes.usuarios')"
+                        v-if="
+                            permisos.includes('reportes.usuarios') ||
+                            permisos.includes('reportes.plan_contingencia') ||
+                            permisos.includes(
+                                'reportes.cantidad_plan_contingencia'
+                            )
+                        "
                     >
                         REPORTES:
                     </li>
@@ -170,6 +176,36 @@
                         >
                             <i class="fas fa-file-pdf nav-icon"></i>
                             <p>Lista de Usuarios</p>
+                        </router-link>
+                    </li>
+                    <li
+                        class="nav-item"
+                        v-if="permisos.includes('reportes.plan_contingencia')"
+                    >
+                        <router-link
+                            :to="{ name: 'reportes.plan_contingencia' }"
+                            class="nav-link"
+                        >
+                            <i class="fas fa-file-pdf nav-icon"></i>
+                            <p>Plan de Contingencia</p>
+                        </router-link>
+                    </li>
+                    <li
+                        class="nav-item"
+                        v-if="
+                            permisos.includes(
+                                'reportes.cantidad_plan_contingencia'
+                            )
+                        "
+                    >
+                        <router-link
+                            :to="{
+                                name: 'reportes.cantidad_plan_contingencia',
+                            }"
+                            class="nav-link"
+                        >
+                            <i class="fas fa-chart-bar nav-icon"></i>
+                            <p>Cantidad de Plan de Contingencias</p>
                         </router-link>
                     </li>
                     <li class="nav-header font-weight-bold">OTRAS OPCIONES:</li>

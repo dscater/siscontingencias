@@ -32,4 +32,21 @@ class ReporteController extends Controller
 
         return $pdf->download('Usuarios.pdf');
     }
+
+    public function plan_contingencia(Request $request)
+    {
+        $filtro = $request->filtro;
+        $tipo = $request->tipo;
+        if ($filtro != 'Todos') {
+            $request->validate([
+                "tipo" => "required",
+            ], [
+                "tipo.required" => "Selecciona una opción"
+            ]);
+        }
+        return "asd";
+    }
+    public function cantidad_plan_contingencia(Request $request)
+    {
+    }
 }
