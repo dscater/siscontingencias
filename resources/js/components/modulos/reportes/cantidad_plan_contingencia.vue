@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Reportes - Cantidad de Documentos por Estados</h1>
+                        <h1>Reportes - Cantidad de Plan de Contingencias</h1>
                     </div>
                 </div>
             </div>
@@ -53,99 +53,40 @@
 
                                             <div1
                                                 class="form-group col-md-12"
-                                                v-if="
-                                                    oReporte.filtro ==
-                                                    'Funcionario'
-                                                "
+                                                v-if="oReporte.filtro == 'Tipo'"
                                             >
                                                 <label
                                                     :class="{
                                                         'text-danger':
-                                                            errors.funcionario_id,
+                                                            errors.tipo,
                                                     }"
-                                                    >Seleccionar
-                                                    Funcionario*</label
+                                                    >Seleccionar*</label
                                                 >
 
                                                 <el-select
                                                     class="w-100"
                                                     :class="{
                                                         'is-invalid':
-                                                            errors.funcionario_id,
+                                                            errors.tipo,
                                                     }"
-                                                    v-model="
-                                                        oReporte.funcionario_id
-                                                    "
+                                                    v-model="oReporte.tipo"
                                                     filterable
                                                     clearable
                                                 >
                                                     <el-option
-                                                        v-for="item in listFuncionarios"
-                                                        :key="item.id"
-                                                        :value="item.id"
-                                                        :label="
-                                                            item.codigo +
-                                                            ' - ' +
-                                                            item.full_name
-                                                        "
+                                                        v-for="item in listTipos"
+                                                        :key="item"
+                                                        :value="item"
+                                                        :label="item"
                                                     >
                                                     </el-option>
                                                 </el-select>
                                                 <span
                                                     class="error invalid-feedback"
-                                                    v-if="errors.funcionario_id"
-                                                    v-text="
-                                                        errors.funcionario_id[0]
-                                                    "
+                                                    v-if="errors.tipo"
+                                                    v-text="errors.tipo[0]"
                                                 ></span>
                                             </div1>
-
-                                            <div
-                                                class="form-group col-md-12"
-                                                v-if="
-                                                    oReporte.filtro ==
-                                                    'Rango de fechas'
-                                                "
-                                            >
-                                                <label
-                                                    :class="{
-                                                        'text-danger':
-                                                            errors.fecha_ini,
-                                                        'text-danger':
-                                                            errors.fecha_fin,
-                                                    }"
-                                                    >Indice un rango de
-                                                    fechas*</label
-                                                >
-                                                <el-date-picker
-                                                    class="w-full d-block"
-                                                    :class="{
-                                                        'is-invalid':
-                                                            errors.fecha_ini,
-                                                        'is-invalid':
-                                                            errors.fecha_fin,
-                                                    }"
-                                                    v-model="aFechas"
-                                                    type="daterange"
-                                                    range-separator="a"
-                                                    start-placeholder="Fecha Inicial"
-                                                    end-placeholder="Fecha Final"
-                                                    format="dd/MM/yyyy"
-                                                    value-format="yyyy-MM-dd"
-                                                    @change="obtieneFechas()"
-                                                >
-                                                </el-date-picker>
-                                                <span
-                                                    class="error invalid-feedback"
-                                                    v-if="errors.fecha_ini"
-                                                    v-text="errors.fecha_ini[0]"
-                                                ></span>
-                                                <span
-                                                    class="error invalid-feedback"
-                                                    v-if="errors.fecha_fin"
-                                                    v-text="errors.fecha_fin[0]"
-                                                ></span>
-                                            </div>
                                         </div>
                                     </form>
                                     <div class="row">
@@ -192,28 +133,27 @@ export default {
             errors: [],
             oReporte: {
                 filtro: "Todos",
-                funcionario_id: "",
+                tipo: "",
                 fecha_ini: "",
                 fecha_fin: "",
             },
             aFechas: [],
             enviando: false,
             textoBtn: "Generar Reporte",
-            listFiltro: ["Todos", "Funcionario", "Rango de fechas"],
-            listFuncionarios: [],
+            listFiltro: ["Todos", "Tipo"],
+            listTipos: [
+                "PLAN DE CONTINGENCIAS",
+                "ROLES Y FUNCIONES",
+                "AMENAZAS Y SEGURIDAD",
+                "ACTIVIDADES DE CONTINGENCIAS",
+            ],
             errors: [],
         };
     },
     mounted() {
         this.loadingWindow.close();
-        this.getFuncionarios();
     },
     methods: {
-        getFuncionarios() {
-            axios.get(main_url + "/admin/funcionarios").then((response) => {
-                this.listFuncionarios = response.data.funcionarios;
-            });
-        },
         limpiarFormulario() {
             this.oReporte.filtro = "Todos";
         },
@@ -221,7 +161,7 @@ export default {
             this.enviando = true;
             axios
                 .post(
-                    main_url + "/admin/reportes/cantidad_documentos",
+                    main_url + "/admin/reportes/cantidad_plan_contingencia",
                     this.oReporte
                 )
                 .then((response) => {
@@ -231,7 +171,7 @@ export default {
                             type: "column",
                         },
                         title: {
-                            text: "CANTIDAD DE DOCUMENTOS",
+                            text: "CANTIDAD DE PLAN DE CONTINGENCIAS",
                         },
                         subtitle: {
                             text: "",
@@ -242,7 +182,7 @@ export default {
                             labels: {
                                 rotation: -45,
                                 style: {
-                                    fontSize: "13px",
+                                    fontSize: "9px",
                                     fontFamily: "Verdana, sans-serif",
                                 },
                             },
@@ -278,7 +218,7 @@ export default {
 
                         series: [
                             {
-                                name: "Documentos",
+                                name: "Cantidad",
                                 colorByPoint: true,
                                 data: response.data.datos,
                                 dataLabels: {

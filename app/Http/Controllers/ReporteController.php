@@ -70,5 +70,57 @@ class ReporteController extends Controller
     }
     public function cantidad_plan_contingencia(Request $request)
     {
+        $filtro =  $request->filtro;
+        $tipo =  $request->tipo;
+
+        if ($filtro == 'Tipo') {
+            $request->validate([
+                "tipo" => "required"
+            ], [
+                "tipo.required" => "Debes seleccionar una opción"
+            ]);
+        }
+
+        $plan_contingencias = PlanContingencia::all();
+        $roles_funciones = RolFuncion::all();
+        $amenazas_seguridad = AmenazaSeguridad::all();
+        $actividades_contingencias = ActividadContingencia::all();
+
+        $datos = [];
+
+        $datos = [
+            ["PLAN DE CONTINGENCIAS", (int)count($plan_contingencias)],
+            ["ROLES Y FUNCIONES", (int)count($roles_funciones)],
+            ["AMENAZAS Y SEGURIDAD", (int)count($amenazas_seguridad)],
+            ["ACTIVIDADES DE CONTINGENCIAS", (int)count($actividades_contingencias)],
+        ];
+
+        if ($filtro != 'Todos' && $tipo == 'PLAN DE CONTINGENCIAS') {
+            $datos = [
+                ["PLAN DE CONTINGENCIAS", (int)count($plan_contingencias)],
+            ];
+        }
+
+        if ($filtro != 'Todos' && $tipo == 'ROLES Y FUNCIONES') {
+            $datos = [
+                ["ROLES Y FUNCIONES", (int)count($roles_funciones)],
+            ];
+        }
+
+        if ($filtro != 'Todos' && $tipo == 'AMENAZAS Y SEGURIDAD') {
+            $datos = [
+                ["AMENAZAS Y SEGURIDAD", (int)count($amenazas_seguridad)],
+            ];
+        }
+
+        if ($filtro != 'Todos' && $tipo == 'ACTIVIDADES DE CONTINGENCIAS') {
+            $datos = [
+                ["ACTIVIDADES DE CONTINGENCIAS", (int)count($actividades_contingencias)],
+            ];
+        }
+
+        return response()->JSON([
+            "datos" => $datos
+        ]);
     }
 }

@@ -86,6 +86,9 @@ class UserController extends Controller
             'roles_funciones.index',
             'amenazas_seguridad.index',
             'actividades_contingencias.index',
+
+            "reportes.plan_contingencia",
+            "reportes.cantidad_plan_contingencia",
         ],
     ];
 
