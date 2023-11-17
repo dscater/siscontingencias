@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActividadContingencia;
+use App\Models\AmenazaSeguridad;
+use App\Models\PlanContingencia;
+use App\Models\RolFuncion;
 use App\Models\User;
 use Illuminate\Http\Request;
 use PDF;
@@ -35,16 +39,34 @@ class ReporteController extends Controller
 
     public function plan_contingencia(Request $request)
     {
-        $filtro = $request->filtro;
-        $tipo = $request->tipo;
-        if ($filtro != 'Todos') {
+        $filtro =  $request->filtro;
+        $tipo =  $request->tipo;
+
+        if ($filtro == 'Filtrar') {
             $request->validate([
-                "tipo" => "required",
+                "tipo" => "required"
             ], [
-                "tipo.required" => "Selecciona una opción"
+                "tipo.required" => "Debes seleccionar una opción"
             ]);
         }
-        return "asd";
+
+        $plan_contingencias = PlanContingencia::all();
+        $roles_funciones = RolFuncion::all();
+        $amenazas_seguridad = AmenazaSeguridad::all();
+        $actividades_contingencias = ActividadContingencia::all();
+
+        $pdf = PDF::loadView('reportes.plan_contingencias', compact('plan_contingencias', 'roles_funciones', 'amenazas_seguridad', 'actividades_contingencias', 'filtro', 'tipo'))
+            ->setPaper('legal', 'landscape');
+
+        // ENUMERAR LAS PÁGINAS USANDO CANVAS
+        $pdf->output();
+        $dom_pdf = $pdf->getDomPDF();
+        $canvas = $dom_pdf->get_canvas();
+        $alto = $canvas->get_height();
+        $ancho = $canvas->get_width();
+        $canvas->page_text($ancho - 90, $alto - 25, "Página {PAGE_NUM} de {PAGE_COUNT}", null, 9, array(0, 0, 0));
+
+        return $pdf->download('plan_contingencias.pdf');
     }
     public function cantidad_plan_contingencia(Request $request)
     {

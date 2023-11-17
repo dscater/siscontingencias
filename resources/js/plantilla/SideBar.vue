@@ -187,7 +187,7 @@
                             class="nav-link"
                         >
                             <i class="fas fa-file-pdf nav-icon"></i>
-                            <p>Plan de Contingencia</p>
+                            <p>Plan de Contingencias</p>
                         </router-link>
                     </li>
                     <li
