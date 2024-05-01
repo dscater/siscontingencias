@@ -33,12 +33,20 @@ class AmenazaSeguridadController extends Controller
         $amenazas_seguridad = AmenazaSeguridad::orderBy("id", "desc");
 
         if (isset($texto) && trim($texto) != '') {
-            $amenazas_seguridad = $amenazas_seguridad->where("titulo", "LIKE", "%$texto%");
+            $amenazas_seguridad = $amenazas_seguridad->where(DB::raw("CONCAT(titulo,' ',descripcion,' ',consecuencias)"), "LIKE", "%$texto%");
         }
 
         $amenazas_seguridad = $amenazas_seguridad->paginate($per_page);
         return response()->JSON(['amenazas_seguridad' => $amenazas_seguridad, 'per_page' => $per_page], 200);
     }
+
+    public function lista(Request $request)
+    {
+        $amenazas_seguridad = AmenazaSeguridad::orderBy("id", "desc");
+        $amenazas_seguridad = $amenazas_seguridad->get();
+        return response()->JSON(['amenazas_seguridad' => $amenazas_seguridad], 200);
+    }
+
     public function store(Request $request)
     {
         $request->validate($this->validacion, $this->mensajes);

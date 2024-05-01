@@ -81,10 +81,26 @@
                             permisos.includes('usuarios.index') ||
                             permisos.includes('plan_contingencias.index') ||
                             permisos.includes('roles_funciones.index') ||
-                            permisos.includes('actividades_contingencias.index')
+                            permisos.includes(
+                                'actividades_contingencias.index'
+                            ) ||
+                            permisos.includes('plan_calidads.index')
                         "
                     >
                         ADMINISTRACIÓN:
+                    </li>
+                    <li
+                        class="nav-item"
+                        v-if="permisos.includes('plan_calidads.index')"
+                    >
+                        <router-link
+                            :to="{ name: 'plan_calidads.index' }"
+                            class="nav-link"
+                            v-loading.fullscreen.lock="fullscreenLoading"
+                        >
+                            <i class="nav-icon fas fa-list-alt"></i>
+                            <p>Plan de Calidad</p>
+                        </router-link>
                     </li>
                     <li
                         class="nav-item"
@@ -161,6 +177,9 @@
                             permisos.includes('reportes.plan_contingencia') ||
                             permisos.includes(
                                 'reportes.cantidad_plan_contingencia'
+                            ) ||
+                            permisos.includes(
+                                'reportes.funcionario_plan_calidad'
                             )
                         "
                     >
@@ -176,6 +195,22 @@
                         >
                             <i class="fas fa-file-pdf nav-icon"></i>
                             <p>Lista de Usuarios</p>
+                        </router-link>
+                    </li>
+                    <li
+                        class="nav-item"
+                        v-if="
+                            permisos.includes(
+                                'reportes.funcionario_plan_calidad'
+                            )
+                        "
+                    >
+                        <router-link
+                            :to="{ name: 'reportes.funcionario_plan_calidad' }"
+                            class="nav-link"
+                        >
+                            <i class="fas fa-file-pdf nav-icon"></i>
+                            <p>Funcionario Plan de Calidad</p>
                         </router-link>
                     </li>
                     <li

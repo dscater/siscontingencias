@@ -35,6 +35,14 @@ export default new Router({
                 .default,
         },
 
+        // Plan Calidad
+        {
+            path: "/plan_calidads",
+            name: "plan_calidads.index",
+            component: require("./components/modulos/plan_calidads/index.vue")
+                .default,
+        },
+
         // Plan Contingencias
         {
             path: "/plan_contingencias",
@@ -87,6 +95,15 @@ export default new Router({
                 .default,
             props: true,
         },
+        {
+            path: "/reportes/funcionario_plan_calidad",
+            name: "reportes.funcionario_plan_calidad",
+            component:
+                require("./components/modulos/reportes/funcionario_plan_calidad.vue")
+                    .default,
+            props: true,
+        },
+
         {
             path: "/reportes/plan_contingencia",
             name: "reportes.plan_contingencia",

@@ -30,12 +30,20 @@ class PlanContingenciaController extends Controller
         $plan_contingencias = PlanContingencia::orderBy("id", "desc");
 
         if (isset($texto) && trim($texto) != '') {
-            $plan_contingencias = $plan_contingencias->where("titulo", "LIKE", "%$texto%");
+            $plan_contingencias = $plan_contingencias->where(DB::raw("CONCAT(titulo,' ',descripcion)"), "LIKE", "%$texto%");
         }
 
         $plan_contingencias = $plan_contingencias->paginate($per_page);
         return response()->JSON(['plan_contingencias' => $plan_contingencias, 'per_page' => $per_page], 200);
     }
+
+    public function lista(Request $request)
+    {
+        $plan_contingencias = PlanContingencia::orderBy("id", "desc");
+        $plan_contingencias = $plan_contingencias->get();
+        return response()->JSON(['plan_contingencias' => $plan_contingencias], 200);
+    }
+    
     public function store(Request $request)
     {
         $request->validate($this->validacion, $this->mensajes);

@@ -70,6 +70,14 @@
                                     <i class="fa fa-sign-in-alt"></i> Acceder
                                 </button>
                             </div>
+                            <div class="col-12 mt-2 text-center">
+                                <a
+                                    :href="url_olvide_mi_contrasenia"
+                                    class="w-100 text-center text-white"
+                                >
+                                    ¿Olvidaste tú contraseña?
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -94,6 +102,10 @@ export default {
         url_portal: {
             String,
             default: "/registro",
+        },
+        url_olvide_mi_contrasenia: {
+            type: String,
+            default: "/olvide_mi_contrasenia",
         },
     },
     data() {

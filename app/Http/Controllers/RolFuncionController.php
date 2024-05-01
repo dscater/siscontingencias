@@ -33,12 +33,21 @@ class RolFuncionController extends Controller
         $roles_funciones = RolFuncion::orderBy("id", "desc");
 
         if (isset($texto) && trim($texto) != '') {
-            $roles_funciones = $roles_funciones->where("titulo", "LIKE", "%$texto%");
+            $roles_funciones = $roles_funciones->where(DB::raw("CONCAT(titulo,' ',rol,' ',funciones_atribuciones)"), "LIKE", "%$texto%");
         }
 
         $roles_funciones = $roles_funciones->paginate($per_page);
         return response()->JSON(['roles_funciones' => $roles_funciones, 'per_page' => $per_page], 200);
     }
+
+    public function lista(Request $request)
+    {
+        $roles_funciones = RolFuncion::orderBy("id", "desc");
+        $roles_funciones = $roles_funciones->get();
+        return response()->JSON(['roles_funciones' => $roles_funciones], 200);
+    }
+
+
     public function store(Request $request)
     {
         $request->validate($this->validacion, $this->mensajes);

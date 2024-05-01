@@ -20,6 +20,9 @@
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/plantilla.css') }}">
+    <script>
+        url_assets = "{{ asset('') }}";
+    </script>
 </head>
 
 <body class="sidebar-mini layout-fixed control-sidebar-slide-open layout-navbar-fixed text-sm">
@@ -29,7 +32,8 @@
                 user="{{ Auth::user() }}"></App>
         @else
             <Auth ruta="{{ route('base_path') }}" logo="{{ asset('imgs/' . $configuracion->first()->logo) }}"
-                empresa="{{ $configuracion->first()->razon_social }}" configuracion="{{ $configuracion->first() }}">
+                empresa="{{ $configuracion->first()->razon_social }}" configuracion="{{ $configuracion->first() }}"
+                url_olvide_mi_contrasenia="{{ route('olvide_mi_contrasenia') }}">
             </Auth>
         @endif
     </div>

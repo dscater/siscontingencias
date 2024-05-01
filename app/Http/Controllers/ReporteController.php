@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ActividadContingencia;
 use App\Models\AmenazaSeguridad;
+use App\Models\PlanCalidad;
 use App\Models\PlanContingencia;
 use App\Models\RolFuncion;
 use App\Models\User;
@@ -122,5 +123,71 @@ class ReporteController extends Controller
         return response()->JSON([
             "datos" => $datos
         ]);
+    }
+
+    public function funcionario_plan_calidad(Request $request)
+    {
+        $categories = [];
+        $series = [
+            [
+                "name" => "PLAN DE CONTINGENCAS",
+                "data" => [],
+            ],
+            [
+                "name" => "ROLES Y FUNCIONES",
+                "data" => [],
+            ],
+            [
+                "name" => "AMENAZAS Y SEGURIDAD",
+                "data" => [],
+            ],
+            [
+                "name" => "ACTIVIDADES DE CONTINGENCIAS",
+                "data" => [],
+            ]
+        ];
+        $usuarios = User::where("tipo", "FUNCIONARIO")->get();
+        foreach ($usuarios as $user) {
+            $categories[] = $user->full_name;
+            $c_plan_contingencias = PlanCalidad::where('user_id', $user->id)
+                ->where('plan_contingencia_id', '!=', null)
+                ->count();
+            $c_roles_funciones = PlanCalidad::where('user_id', $user->id)
+                ->where('rol_funcion_id', '!=', null)
+                ->count();
+            $c_amenazas_seguridad = PlanCalidad::where('user_id', $user->id)
+                ->where('amenaza_seguridad_id', '!=', null)
+                ->count();
+            $c_actividades_contingencias = PlanCalidad::where('user_id', $user->id)
+                ->where('actividad_contingencia_id', '!=', null)
+                ->count();
+            $series[0]["data"][] = $c_plan_contingencias;
+            $series[1]["data"][] = $c_roles_funciones;
+            $series[2]["data"][] = $c_amenazas_seguridad;
+            $series[3]["data"][] = $c_actividades_contingencias;
+        }
+
+        return response()->JSON([
+            "categories" => $categories,
+            "series" => $series,
+        ]);
+    }
+
+    public function funcionario_plan_calidad_pdf(Request $request)
+    {
+        $usuarios = User::where("tipo", "FUNCIONARIO")->get();
+
+        $pdf = PDF::loadView('reportes.funcionario_plan_calidad', compact("usuarios"))
+            ->setPaper('letter', 'portrait');
+
+        // ENUMERAR LAS PÁGINAS USANDO CANVAS
+        $pdf->output();
+        $dom_pdf = $pdf->getDomPDF();
+        $canvas = $dom_pdf->get_canvas();
+        $alto = $canvas->get_height();
+        $ancho = $canvas->get_width();
+        $canvas->page_text($ancho - 90, $alto - 25, "Página {PAGE_NUM} de {PAGE_COUNT}", null, 9, array(0, 0, 0));
+
+        return $pdf->download('funcionario_plan_calidad.pdf');
     }
 }

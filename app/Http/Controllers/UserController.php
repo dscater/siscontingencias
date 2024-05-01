@@ -74,18 +74,26 @@ class UserController extends Controller
             'actividades_contingencias.edit',
             'actividades_contingencias.destroy',
 
+            'plan_calidads.index',
+            'plan_calidads.create',
+            'plan_calidads.edit',
+            'plan_calidads.destroy',
+
             'configuracion.index',
             'configuracion.edit',
 
             "reportes.usuarios",
             "reportes.plan_contingencia",
             "reportes.cantidad_plan_contingencia",
+            "reportes.funcionario_plan_calidad",
         ],
         "FUNCIONARIO" => [
             'plan_contingencias.index',
             'roles_funciones.index',
             'amenazas_seguridad.index',
             'actividades_contingencias.index',
+
+            'plan_calidads.index',
 
             "reportes.plan_contingencia",
             "reportes.cantidad_plan_contingencia",

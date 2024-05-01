@@ -36,12 +36,22 @@ class ActividadContingenciaController extends Controller
         $actividades_contingencias = ActividadContingencia::orderBy("id", "desc");
 
         if (isset($texto) && trim($texto) != '') {
-            $actividades_contingencias = $actividades_contingencias->where("titulo", "LIKE", "%$texto%");
+            $actividades_contingencias = $actividades_contingencias->where(DB::raw("CONCAT(titulo,' ',antes,' ',durante,' ',despues)"), "LIKE", "%$texto%");
         }
 
         $actividades_contingencias = $actividades_contingencias->paginate($per_page);
         return response()->JSON(['actividades_contingencias' => $actividades_contingencias, 'per_page' => $per_page], 200);
     }
+
+
+
+    public function lista(Request $request)
+    {
+        $actividades_contingencias = ActividadContingencia::orderBy("id", "desc");
+        $actividades_contingencias = $actividades_contingencias->get();
+        return response()->JSON(['actividades_contingencias' => $actividades_contingencias], 200);
+    }
+
     public function store(Request $request)
     {
         $request->validate($this->validacion, $this->mensajes);
