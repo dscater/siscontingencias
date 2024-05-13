@@ -19,21 +19,21 @@
                             <div class="form-group col-md-12">
                                 <label
                                     :class="{
-                                        'text-danger': errors.ci,
+                                        'text-danger': errors.email,
                                     }"
-                                    >Ingresa tú de C.I.*</label
+                                    >Ingresa tú correo electrónico*</label
                                 >
                                 <el-input
-                                    placeholder="Ingresa tú de C.I."
-                                    :class="{ 'is-invalid': errors.ci }"
-                                    v-model="form_registro.ci"
+                                    placeholder="Ingresa tú correo electrónico"
+                                    :class="{ 'is-invalid': errors.email }"
+                                    v-model="form_registro.email"
                                     clearable
                                 >
                                 </el-input>
                                 <span
                                     class="error invalid-feedback"
-                                    v-if="errors.ci"
-                                    v-text="errors.ci[0]"
+                                    v-if="errors.email"
+                                    v-text="errors.email[0]"
                                 ></span>
                             </div>
                         </div>
@@ -94,7 +94,7 @@ export default {
     data() {
         return {
             form_registro: {
-                ci: "",
+                email: "",
             },
             errors: [],
             fullscreenLoading: false,
@@ -104,10 +104,13 @@ export default {
         registro() {
             this.fullscreenLoading = true;
             axios
-                .post(main_url + "/registrar_ci", this.form_registro)
+                .post(
+                    main_url + "/envia_correo_recuperacion",
+                    this.form_registro
+                )
                 .then((res) => {
                     this.fullscreenLoading = false;
-                    this.form_registro.ci = "";
+                    this.form_registro.email = "";
                     Swal.fire({
                         icon: "success",
                         title: "Correcto",

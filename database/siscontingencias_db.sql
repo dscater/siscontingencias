@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 01-05-2024 a las 19:52:25
+-- Tiempo de generación: 13-05-2024 a las 16:33:51
 -- Versión del servidor: 8.0.30
--- Versión de PHP: 8.1.10
+-- Versión de PHP: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -326,7 +326,9 @@ INSERT INTO `plan_contingencias` (`id`, `titulo`, `descripcion`, `fecha_registro
 
 CREATE TABLE `recuperacions` (
   `id` bigint UNSIGNED NOT NULL,
-  `user_id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cod` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `recuperado` int NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -336,9 +338,8 @@ CREATE TABLE `recuperacions` (
 -- Volcado de datos para la tabla `recuperacions`
 --
 
-INSERT INTO `recuperacions` (`id`, `user_id`, `recuperado`, `created_at`, `updated_at`) VALUES
-(2, 3, 1, '2024-05-01 19:49:57', '2024-05-01 19:50:37'),
-(3, 3, 1, '2024-05-01 19:51:16', '2024-05-01 19:51:59');
+INSERT INTO `recuperacions` (`id`, `user_id`, `email`, `cod`, `recuperado`, `created_at`, `updated_at`) VALUES
+(1, NULL, 'victorgonzalo.as@gmail.com', 'Q3QIAV', 1, '2024-05-13 16:30:33', '2024-05-13 16:33:31');
 
 -- --------------------------------------------------------
 
@@ -397,7 +398,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `usuario`, `nombre`, `paterno`, `materno`, `ci`, `ci_exp`, `dir`, `correo`, `fono`, `tipo`, `foto`, `password`, `acceso`, `fecha_registro`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'admin', 'admin', NULL, '0', '', '', NULL, '', 'ADMINISTRADOR', NULL, '$2y$10$RrCZZySOwPej2gMFWsrjMe6dLzfaL5Q88h4J75I1FesEBRNPwq1x.', 1, '2023-11-01', NULL, NULL),
 (2, 'JPERES', 'JUAN', 'PERES', 'MAMANI', '1234', 'LP', 'LOS OLIVOS', NULL, '777777', 'FUNCIONARIO', '1699452109_JPERES.jpg', '$2y$10$JJG8Z10ezDVHqVBX5AuW1eAXR.Hlp2ULIQmG9zDvbybbRZeeds/eW', 1, '2023-11-08', '2023-11-08 14:01:49', '2023-11-16 15:19:58'),
-(3, 'MMAMANI', 'MARCOS', 'MAMANI', '', '2222', 'LP', 'LOS OLIVOS', NULL, '77777777', 'FUNCIONARIO', 'default.png', '$2y$10$xgTLYejp0LWUIjqcg.CZj.Gvl9NMfaAZ4MahESZhHvMtULZhuV/iq', 1, '2024-05-01', '2024-05-01 19:15:47', '2024-05-01 19:51:59');
+(3, 'MMAMANI', 'MARCOS', 'MAMANI', '', '2222', 'LP', 'LOS OLIVOS', NULL, '77777777', 'FUNCIONARIO', 'default.png', '$2y$10$UQeNqANB5TpP7SsRyjMzD.Ip3uPZDGZZaXKBdJJCEojQzvNCdZmu2', 1, '2024-05-01', '2024-05-01 19:15:47', '2024-05-13 16:33:31');
 
 --
 -- Índices para tablas volcadas
@@ -552,7 +553,7 @@ ALTER TABLE `plan_contingencias`
 -- AUTO_INCREMENT de la tabla `recuperacions`
 --
 ALTER TABLE `recuperacions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `roles_funciones`

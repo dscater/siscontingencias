@@ -19,6 +19,48 @@
                             <div class="form-group col-md-6">
                                 <label
                                     :class="{
+                                        'text-danger': errors.cod,
+                                    }"
+                                    >Ingresa el código de verificación*</label
+                                >
+                                <el-input
+                                    type="cod"
+                                    placeholder="Código de verificación"
+                                    :class="{ 'is-invalid': errors.cod }"
+                                    v-model="form_registro.cod"
+                                    clearable
+                                >
+                                </el-input>
+                                <span
+                                    class="error invalid-feedback"
+                                    v-if="errors.cod"
+                                    v-text="errors.cod[0]"
+                                ></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label
+                                    :class="{
+                                        'text-danger': errors.ci,
+                                    }"
+                                    >Ingresa tu número de C.I.*</label
+                                >
+                                <el-input
+                                    type="ci"
+                                    placeholder="C.I."
+                                    :class="{ 'is-invalid': errors.ci }"
+                                    v-model="form_registro.ci"
+                                    clearable
+                                >
+                                </el-input>
+                                <span
+                                    class="error invalid-feedback"
+                                    v-if="errors.ci"
+                                    v-text="errors.ci[0]"
+                                ></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label
+                                    :class="{
                                         'text-danger': errors.password,
                                     }"
                                     >Nueva Contraseña*</label
@@ -125,7 +167,12 @@ export default {
     },
     data() {
         return {
-            form_registro: { password: "", password_confirmation: "" },
+            form_registro: {
+                cod: "",
+                ci: "",
+                password: "",
+                password_confirmation: "",
+            },
             oRecuperacion: this.recuperacion
                 ? JSON.parse(this.recuperacion)
                 : null,
@@ -143,6 +190,8 @@ export default {
                 )
                 .then((res) => {
                     this.fullscreenLoading = false;
+                    this.form_registro.cod = "";
+                    this.form_registro.ci = "";
                     this.form_registro.password = "";
                     this.form_registro.password_confirmation = "";
                     Swal.fire({

@@ -11,7 +11,9 @@ class Recuperacion extends Model
 
     protected $fillable = [
         "user_id",
-        "recuperado"
+        "email",
+        "cod",
+        "recuperado",
     ];
 
     public function user()

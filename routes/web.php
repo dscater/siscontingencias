@@ -27,7 +27,7 @@ Route::get('/cache_clear', function () {
 
 
 Route::get("olvide_mi_contrasenia", [RecuperacionController::class, 'olvide_mi_contrasenia'])->name("olvide_mi_contrasenia");
-Route::post("registrar_ci", [RecuperacionController::class, 'registrar_ci'])->name("registrar_ci");
+Route::post("envia_correo_recuperacion", [RecuperacionController::class, 'envia_correo_recuperacion'])->name("envia_correo_recuperacion");
 Route::get("recuperacion/{recuperacion}", [RecuperacionController::class, 'recuperacion'])->name("recuperacion");
 Route::post("recuperacion/{recuperacion}", [RecuperacionController::class, 'registro_recuperacion'])->name("registro_recuperacion");
 
