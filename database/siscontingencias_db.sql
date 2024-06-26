@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 13-05-2024 a las 16:33:51
+-- Tiempo de generación: 26-06-2024 a las 14:14:39
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 7.4.19
 
@@ -121,7 +121,7 @@ CREATE TABLE `envio_correos` (
 --
 
 INSERT INTO `envio_correos` (`id`, `host`, `puerto`, `encriptado`, `email`, `nombre`, `password`, `driver`, `created_at`, `updated_at`) VALUES
-(1, 'smtp.hostinger.com', '587', 'tls', 'web@emsytsrl.com', 'SISCONTINGENCIAS', '10-Co20re30oS', 'smtp', '2024-04-27 16:28:23', '2024-04-27 16:28:48');
+(1, 'smtp.hostinger.com', '587', 'tls', 'mensaje@emsytsrl.com', 'SISCONTINGENCIAS', '1Uno2Dos3Tres-0', 'smtp', '2024-04-27 16:28:23', '2024-04-27 16:28:48');
 
 -- --------------------------------------------------------
 
@@ -339,7 +339,8 @@ CREATE TABLE `recuperacions` (
 --
 
 INSERT INTO `recuperacions` (`id`, `user_id`, `email`, `cod`, `recuperado`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'victorgonzalo.as@gmail.com', 'Q3QIAV', 1, '2024-05-13 16:30:33', '2024-05-13 16:33:31');
+(1, NULL, 'victorgonzalo.as@gmail.com', 'Q3QIAV', 1, '2024-05-13 16:30:33', '2024-05-13 16:33:31'),
+(3, NULL, 'victorgonzalo.as@gmail.com', 'G4CKUX', 1, '2024-06-26 14:11:58', '2024-06-26 14:12:49');
 
 -- --------------------------------------------------------
 
@@ -397,7 +398,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `usuario`, `nombre`, `paterno`, `materno`, `ci`, `ci_exp`, `dir`, `correo`, `fono`, `tipo`, `foto`, `password`, `acceso`, `fecha_registro`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'admin', 'admin', NULL, '0', '', '', NULL, '', 'ADMINISTRADOR', NULL, '$2y$10$RrCZZySOwPej2gMFWsrjMe6dLzfaL5Q88h4J75I1FesEBRNPwq1x.', 1, '2023-11-01', NULL, NULL),
-(2, 'JPERES', 'JUAN', 'PERES', 'MAMANI', '1234', 'LP', 'LOS OLIVOS', NULL, '777777', 'FUNCIONARIO', '1699452109_JPERES.jpg', '$2y$10$JJG8Z10ezDVHqVBX5AuW1eAXR.Hlp2ULIQmG9zDvbybbRZeeds/eW', 1, '2023-11-08', '2023-11-08 14:01:49', '2023-11-16 15:19:58'),
+(2, 'JPERES', 'JUAN', 'PERES', 'MAMANI', '1234', 'LP', 'LOS OLIVOS', NULL, '777777', 'FUNCIONARIO', '1699452109_JPERES.jpg', '$2y$10$JJG8Z10ezDVHqVBX5AuW1eAXR.Hlp2ULIQmG9zDvbybbRZeeds/eW', 1, '2023-11-08', '2023-11-08 14:01:49', '2024-06-26 14:12:49'),
 (3, 'MMAMANI', 'MARCOS', 'MAMANI', '', '2222', 'LP', 'LOS OLIVOS', NULL, '77777777', 'FUNCIONARIO', 'default.png', '$2y$10$UQeNqANB5TpP7SsRyjMzD.Ip3uPZDGZZaXKBdJJCEojQzvNCdZmu2', 1, '2024-05-01', '2024-05-01 19:15:47', '2024-05-13 16:33:31');
 
 --
@@ -553,7 +554,7 @@ ALTER TABLE `plan_contingencias`
 -- AUTO_INCREMENT de la tabla `recuperacions`
 --
 ALTER TABLE `recuperacions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `roles_funciones`
