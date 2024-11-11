@@ -347,7 +347,7 @@ export default {
                 { value: "PD", label: "Pando" },
                 { value: "BN", label: "Beni" },
             ],
-            listTipos: ["ADMINISTRADOR", "FUNCIONARIO"],
+            listTipos: ["ADMINISTRADOR", "FUNCIONARIO", "SUPERVISOR"],
             errors: [],
         };
     },

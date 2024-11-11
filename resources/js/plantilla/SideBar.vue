@@ -91,6 +91,19 @@
                     </li>
                     <li
                         class="nav-item"
+                        v-if="permisos.includes('controls.index')"
+                    >
+                        <router-link
+                            :to="{ name: 'controls.index' }"
+                            class="nav-link"
+                            v-loading.fullscreen.lock="fullscreenLoading"
+                        >
+                            <i class="nav-icon fas fa-list-alt"></i>
+                            <p>Control de Plan de Calidad</p>
+                        </router-link>
+                    </li>
+                    <li
+                        class="nav-item"
                         v-if="permisos.includes('plan_calidads.index')"
                     >
                         <router-link

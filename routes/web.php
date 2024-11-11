@@ -3,10 +3,12 @@
 use App\Http\Controllers\ActividadContingenciaController;
 use App\Http\Controllers\AmenazaSeguridadController;
 use App\Http\Controllers\ConfiguracionController;
+use App\Http\Controllers\ControlController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PlanArchivoController;
 use App\Http\Controllers\PlanCalidadController;
 use App\Http\Controllers\PlanContingenciaController;
+use App\Http\Controllers\PlanSeguimientoController;
 use App\Http\Controllers\RecuperacionController;
 use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\RolFuncionController;
@@ -54,12 +56,21 @@ Route::middleware(['auth'])->group(function () {
         Route::post('usuarios/actualizaContrasenia/{usuario}', [UserController::class, 'actualizaContrasenia']);
         Route::post('usuarios/actualizaFoto/{usuario}', [UserController::class, 'actualizaFoto']);
         Route::resource('usuarios', UserController::class)->only([
-            'index', 'store', 'update', 'destroy', 'show'
+            'index',
+            'store',
+            'update',
+            'destroy',
+            'show'
         ]);
 
         // plan_calidads
+        Route::put('plan_calidads/update_estado/{plan_calidad}', [PlanCalidadController::class, 'update_estado']);
         Route::resource('plan_calidads', PlanCalidadController::class)->only([
-            'index', 'store', 'update', 'destroy', 'show'
+            'index',
+            'store',
+            'update',
+            'destroy',
+            'show'
         ]);
 
         // plan archivos
@@ -68,7 +79,11 @@ Route::middleware(['auth'])->group(function () {
         // plan_contingencias
         Route::get('plan_contingencias/lista', [PlanContingenciaController::class, 'lista']);
         Route::resource('plan_contingencias', PlanContingenciaController::class)->only([
-            'index', 'store', 'update', 'destroy', 'show'
+            'index',
+            'store',
+            'update',
+            'destroy',
+            'show'
         ]);
 
         // roles_funciones
@@ -77,7 +92,8 @@ Route::middleware(['auth'])->group(function () {
         Route::put('roles_funciones/{rol_funcion}', [RolFuncionController::class, 'update']);
         Route::delete('roles_funciones/{rol_funcion}', [RolFuncionController::class, 'destroy']);
         Route::resource('roles_funciones', RolFuncionController::class)->only([
-            'index', 'store'
+            'index',
+            'store'
         ]);
 
         // amenzas_seguridad
@@ -86,7 +102,8 @@ Route::middleware(['auth'])->group(function () {
         Route::put('amenazas_seguridad/{amenaza_seguridad}', [AmenazaSeguridadController::class, 'update']);
         Route::delete('amenazas_seguridad/{amenaza_seguridad}', [AmenazaSeguridadController::class, 'destroy']);
         Route::resource('amenazas_seguridad', AmenazaSeguridadController::class)->only([
-            'index', 'store'
+            'index',
+            'store'
         ]);
 
         // actividades_contingencias
@@ -95,7 +112,29 @@ Route::middleware(['auth'])->group(function () {
         Route::put('actividades_contingencias/{actividad_contingencia}', [ActividadContingenciaController::class, 'update']);
         Route::delete('actividades_contingencias/{actividad_contingencia}', [ActividadContingenciaController::class, 'destroy']);
         Route::resource('actividades_contingencias', ActividadContingenciaController::class)->only([
-            'index', 'store'
+            'index',
+            'store'
+        ]);
+
+        // plan_seguimientos
+        Route::get('plan_seguimientos/lista', [PlanSeguimientoController::class, 'lista']);
+        Route::get('plan_seguimientos/{plan_seguimiento}', [PlanSeguimientoController::class, 'show']);
+        Route::put('plan_seguimientos/{plan_seguimiento}', [PlanSeguimientoController::class, 'update']);
+        Route::delete('plan_seguimientos/{plan_seguimiento}', [PlanSeguimientoController::class, 'destroy']);
+        Route::resource('plan_seguimientos', PlanSeguimientoController::class)->only([
+            'index',
+            'store'
+        ]);
+
+        // controls
+        Route::get('controls/lista', [ControlController::class, 'lista']);
+        Route::get('controls/seguimiento/{control}', [ControlController::class, 'seguimiento']);
+        Route::get('controls/{control}', [ControlController::class, 'show']);
+        Route::put('controls/{control}', [ControlController::class, 'update']);
+        Route::delete('controls/{control}', [ControlController::class, 'destroy']);
+        Route::resource('controls', ControlController::class)->only([
+            'index',
+            'store'
         ]);
 
         // REPORTES
@@ -104,6 +143,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('reportes/cantidad_plan_contingencia', [ReporteController::class, 'cantidad_plan_contingencia']);
         Route::post('reportes/funcionario_plan_calidad', [ReporteController::class, 'funcionario_plan_calidad']);
         Route::post('reportes/funcionario_plan_calidad_pdf', [ReporteController::class, 'funcionario_plan_calidad_pdf']);
+        Route::post('reportes/plan_calidad_estados', [ReporteController::class, 'plan_calidad_estados']);
     });
 });
 

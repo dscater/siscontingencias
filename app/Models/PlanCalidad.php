@@ -58,4 +58,5 @@ class PlanCalidad extends Model
     {
         return $this->hasMany(PlanArchivo::class, 'plan_calidad_id');
     }
+
 }

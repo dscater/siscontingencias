@@ -87,6 +87,17 @@ class UserController extends Controller
             "reportes.cantidad_plan_contingencia",
             "reportes.funcionario_plan_calidad",
         ],
+        "SUPERVISOR" => [
+            'controls.index',
+            'controls.create',
+            'controls.edit',
+            'controls.destroy',
+
+            'plan_seguimientos.index',
+            'plan_seguimientos.create',
+            'plan_seguimientos.edit',
+            'plan_seguimientos.destroy',
+        ],
         "FUNCIONARIO" => [
             'plan_contingencias.index',
             'roles_funciones.index',

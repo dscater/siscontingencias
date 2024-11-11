@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Control;
 use App\Models\HistorialAccion;
 use App\Models\PlanCalidad;
 use Illuminate\Http\Request;
@@ -10,7 +11,6 @@ use Illuminate\Support\Facades\DB;
 
 class PlanCalidadController extends Controller
 {
-
     public $validacion = [
         "user_id" => "required",
         "actividad" => "required",
@@ -59,7 +59,6 @@ class PlanCalidadController extends Controller
             $this->validacion["plan_contingencia_id"] = "required";
             $request["plan_contingencia_id"] = $plan_contingencia_id;
         }
-
         if ($request->norma == 'ROLES Y FUNCIONES') {
             $this->validacion["rol_funcion_id"] = "required";
             $request["rol_funcion_id"] = $rol_funcion_id;
@@ -95,6 +94,21 @@ class PlanCalidadController extends Controller
                 }
             }
             $nuevo_plan_calidad->save();
+
+            $existe = Control::where("user_id", $nuevo_plan_calidad->user_id)
+                ->get()->first();
+            if (!$existe) {
+                $existe = Control::create([
+                    "asignados" => 1,
+                    "pendientes" => 1,
+                    "observados" => 0,
+                    "finalizados" => 0,
+                ]);
+            } else {
+                $existe->asignados = (int)$existe->asignados + 1;
+                $existe->pendientes = (int)$existe->pendientes + 1;
+                $existe->save();
+            }
 
             $datos_original = HistorialAccion::getDetalleRegistro($nuevo_plan_calidad, "plan_calidads");
             HistorialAccion::create([
@@ -220,6 +234,47 @@ class PlanCalidadController extends Controller
                 'message' => $e->getMessage(),
             ], 500);
         }
+    }
+
+    public function update_estado(PlanCalidad $plan_calidad, Request $request)
+    {
+        $estado_anterior = $plan_calidad->estado;
+
+        $plan_calidad->estado = $request->estado;
+        $plan_calidad->descripcion = mb_strtoupper($request->descripcion);
+        $plan_calidad->save();
+
+        // user control
+        $control = Control::where("user_id", $plan_calidad->user_id)->get()->first();
+
+        if ($estado_anterior != $plan_calidad->estado) {
+            switch ($estado_anterior) {
+                case 'PENDIENTE':
+                    $control->pendientes = (int)$control->pendientes - 1;
+                    break;
+                case 'OBSERVADO':
+                    $control->observados = (int)$control->observados - 1;
+                    break;
+                case 'FINALIZADO':
+                    $control->finalizados = (int)$control->finalizados - 1;
+                    break;
+            }
+
+            switch ($plan_calidad->estado) {
+                case 'PENDIENTE':
+                    $control->pendientes = (int)$control->pendientes + 1;
+                    break;
+                case 'OBSERVADO':
+                    $control->observados = (int)$control->observados + 1;
+                    break;
+                case 'FINALIZADO':
+                    $control->finalizados = (int)$control->finalizados + 1;
+                    break;
+            }
+
+            $control->save();
+        }
+        return response()->JSON(["plan_calidad" => $plan_calidad, "msj" => "Registro actualizado correctamente"]);
     }
 
     public function show(PlanCalidad $plan_calidad)

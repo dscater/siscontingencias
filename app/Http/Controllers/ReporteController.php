@@ -190,4 +190,23 @@ class ReporteController extends Controller
 
         return $pdf->download('funcionario_plan_calidad.pdf');
     }
+
+    public function plan_calidad_estados(Request $request)
+    {
+        $datos = [];
+        $series = ["PENDIENTE", "OBSERVADO", "FINALIZADO"];
+        $colores = ["#0779ad", "#e25402", "#00e727"];
+        foreach ($series as $index => $value) {
+            $plan_calidads = PlanCalidad::where("estado", $value)->count();
+            $datos[] = [
+                'name' => $value, // Nombre del punto
+                'y' => (float)$plan_calidads, // Valor de la columna
+                'color' => $colores[$index] // Color personalizado
+            ];
+        }
+
+        return response()->JSON([
+            "datos" => $datos,
+        ]);
+    }
 }

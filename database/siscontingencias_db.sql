@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 26-06-2024 a las 14:14:39
+-- Tiempo de generación: 11-11-2024 a las 20:58:48
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 7.4.19
 
@@ -100,6 +100,31 @@ INSERT INTO `configuracions` (`id`, `nombre_sistema`, `alias`, `razon_social`, `
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `controls`
+--
+
+CREATE TABLE `controls` (
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `asignados` int NOT NULL DEFAULT '0',
+  `pendientes` int NOT NULL DEFAULT '0',
+  `observados` int NOT NULL DEFAULT '0',
+  `finalizados` int NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `controls`
+--
+
+INSERT INTO `controls` (`id`, `user_id`, `asignados`, `pendientes`, `observados`, `finalizados`, `created_at`, `updated_at`) VALUES
+(1, 2, 3, 1, 1, 1, '2024-11-11 19:59:17', '2024-11-11 20:48:56'),
+(2, 3, 2, 2, 0, 0, '2024-11-11 19:59:17', '2024-11-11 20:48:30');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `envio_correos`
 --
 
@@ -187,7 +212,10 @@ INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `dato
 (37, 1, 'MODIFICACIÓN', 'EL USUARIO MODIFICÓ UN PLAN DE CALIDAD', 'actividad: ACTIVIDAD #1<br/>actividad_contingencia_id: <br/>amenaza_seguridad_id: <br/>created_at: 2024-05-01 12:42:25<br/>fecha_registro: 2024-05-01<br/>id: 2<br/>norma: PLAN DE CONTIGENCIAS<br/>objetivo: OBJETIVO 1<br/>plan_contingencia_id: 1<br/>registros: REGISTROS ACTIVIDAD #1<br/>rol_funcion_id: <br/>updated_at: 2024-05-01 12:59:08<br/>user_id: 2<br/>', 'actividad: ACTIVIDAD #1<br/>actividad_contingencia_id: <br/>amenaza_seguridad_id: <br/>created_at: 2024-05-01 12:42:25<br/>fecha_registro: 2024-05-01<br/>id: 2<br/>norma: PLAN DE CONTIGENCIAS<br/>objetivo: OBJETIVO 1<br/>plan_contingencia_id: 1<br/>registros: REGISTROS ACTIVIDAD #1<br/>rol_funcion_id: <br/>updated_at: 2024-05-01 12:59:15<br/>user_id: 2<br/>', 'PLAN DE CALIDADS', '2024-05-01', '12:59:15', '2024-05-01 16:59:15', '2024-05-01 16:59:15'),
 (38, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN USUARIO', 'acceso: 1<br/>ci: 2222<br/>ci_exp: LP<br/>correo: <br/>created_at: 2024-05-01 15:15:47<br/>dir: LOS OLIVOS<br/>fecha_registro: 2024-05-01<br/>fono: 77777777<br/>foto: default.png<br/>id: 3<br/>materno: <br/>nombre: MARCOS<br/>password: $2y$10$xgTLYejp0LWUIjqcg.CZj.Gvl9NMfaAZ4MahESZhHvMtULZhuV/iq<br/>paterno: MAMANI<br/>tipo: FUNCIONARIO<br/>updated_at: 2024-05-01 15:15:47<br/>usuario: MMAMANI<br/>', NULL, 'USUARIOS', '2024-05-01', '15:15:48', '2024-05-01 19:15:48', '2024-05-01 19:15:48'),
 (39, 1, 'CREACIÓN', 'EL USUARIO REGISTRO UN PLAN DE CALIDAD', 'actividad: ACTIVIDAD #2<br/>actividad_contingencia_id: <br/>amenaza_seguridad_id: 1<br/>created_at: 2024-05-01 15:34:25<br/>fecha_registro: 2024-05-01<br/>id: 3<br/>norma: AMENAZAS Y SEGURDAD<br/>objetivo: OBJETIVO<br/>plan_contingencia_id: <br/>registros: REGISTROS<br/>rol_funcion_id: <br/>updated_at: 2024-05-01 15:34:25<br/>user_id: 2<br/>', NULL, 'PLAN DE CALIDADS', '2024-05-01', '15:34:25', '2024-05-01 19:34:25', '2024-05-01 19:34:25'),
-(40, 1, 'CREACIÓN', 'EL USUARIO REGISTRO UN PLAN DE CALIDAD', 'actividad: ACTIVIDAD #3<br/>actividad_contingencia_id: <br/>amenaza_seguridad_id: 1<br/>created_at: 2024-05-01 15:34:51<br/>fecha_registro: 2024-05-01<br/>id: 4<br/>norma: AMENAZAS Y SEGURDAD<br/>objetivo: OBJ- 3<br/>plan_contingencia_id: <br/>registros: REGISTROS<br/>rol_funcion_id: <br/>updated_at: 2024-05-01 15:34:51<br/>user_id: 3<br/>', NULL, 'PLAN DE CALIDADS', '2024-05-01', '15:34:51', '2024-05-01 19:34:51', '2024-05-01 19:34:51');
+(40, 1, 'CREACIÓN', 'EL USUARIO REGISTRO UN PLAN DE CALIDAD', 'actividad: ACTIVIDAD #3<br/>actividad_contingencia_id: <br/>amenaza_seguridad_id: 1<br/>created_at: 2024-05-01 15:34:51<br/>fecha_registro: 2024-05-01<br/>id: 4<br/>norma: AMENAZAS Y SEGURDAD<br/>objetivo: OBJ- 3<br/>plan_contingencia_id: <br/>registros: REGISTROS<br/>rol_funcion_id: <br/>updated_at: 2024-05-01 15:34:51<br/>user_id: 3<br/>', NULL, 'PLAN DE CALIDADS', '2024-05-01', '15:34:51', '2024-05-01 19:34:51', '2024-05-01 19:34:51'),
+(41, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN USUARIO', 'acceso: 1<br/>ci: 3333<br/>ci_exp: LP<br/>correo: <br/>created_at: 2024-11-11 15:37:59<br/>dir: ZONA LOS OLIVOS<br/>fecha_registro: 2024-11-11<br/>fono: 7777777<br/>foto: default.png<br/>id: 4<br/>materno: MAMANI<br/>nombre: CARLOS<br/>password: $2y$10$ggFFy/G.d4z2WnAVX2HIf.AK3UzGzSSp0aFx3DB3NxYdYQDn0OKuG<br/>paterno: CASTRO<br/>tipo: SUPERVISOR<br/>updated_at: 2024-11-11 15:37:59<br/>usuario: CCASTRO<br/>', NULL, 'USUARIOS', '2024-11-11', '15:37:59', '2024-11-11 19:37:59', '2024-11-11 19:37:59'),
+(42, 1, 'CREACIÓN', 'EL USUARIO REGISTRO UN PLAN DE CALIDAD', 'actividad: ACTIVIDAD #2<br/>actividad_contingencia_id: <br/>amenaza_seguridad_id: <br/>created_at: 2024-11-11 16:48:30<br/>descripcion: <br/>estado: <br/>fecha_registro: 2024-11-11<br/>id: 7<br/>norma: PLAN DE CONTIGENCIAS<br/>objetivo: OBJETIVO #2<br/>plan_contingencia_id: 3<br/>registros: REGISTROS<br/>rol_funcion_id: <br/>updated_at: 2024-11-11 16:48:30<br/>user_id: 3<br/>', NULL, 'PLAN DE CALIDADS', '2024-11-11', '16:48:30', '2024-11-11 20:48:30', '2024-11-11 20:48:30'),
+(43, 1, 'CREACIÓN', 'EL USUARIO REGISTRO UN PLAN DE CALIDAD', 'actividad: ACTIVIDAD TRES<br/>actividad_contingencia_id: <br/>amenaza_seguridad_id: 1<br/>created_at: 2024-11-11 16:48:56<br/>descripcion: <br/>estado: <br/>fecha_registro: 2024-11-11<br/>id: 8<br/>norma: AMENAZAS Y SEGURDAD<br/>objetivo: OBJETIVO TRES<br/>plan_contingencia_id: <br/>registros: REGISTRO DEL PLAN TRES<br/>rol_funcion_id: <br/>updated_at: 2024-11-11 16:48:56<br/>user_id: 2<br/>', NULL, 'PLAN DE CALIDADS', '2024-11-11', '16:48:56', '2024-11-11 20:48:56', '2024-11-11 20:48:56');
 
 -- --------------------------------------------------------
 
@@ -217,7 +245,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (9, '2024_05_01_110726_create_plan_calidads_table', 3),
 (10, '2024_05_01_110750_create_plan_archivos_table', 3),
 (11, '2024_05_01_111045_create_envio_correos_table', 3),
-(12, '2024_05_01_153736_create_recuperacions_table', 4);
+(12, '2024_05_01_153736_create_recuperacions_table', 4),
+(13, '2024_11_11_150859_create_controls_table', 5);
 
 -- --------------------------------------------------------
 
@@ -281,6 +310,8 @@ CREATE TABLE `plan_calidads` (
   `actividad_contingencia_id` bigint UNSIGNED DEFAULT NULL,
   `objetivo` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `registros` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `estado` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'PENDIENTE',
+  `descripcion` text COLLATE utf8mb4_unicode_ci,
   `fecha_registro` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -290,10 +321,12 @@ CREATE TABLE `plan_calidads` (
 -- Volcado de datos para la tabla `plan_calidads`
 --
 
-INSERT INTO `plan_calidads` (`id`, `user_id`, `actividad`, `norma`, `plan_contingencia_id`, `rol_funcion_id`, `amenaza_seguridad_id`, `actividad_contingencia_id`, `objetivo`, `registros`, `fecha_registro`, `created_at`, `updated_at`) VALUES
-(2, 2, 'ACTIVIDAD #1', 'PLAN DE CONTIGENCIAS', 1, NULL, NULL, NULL, 'OBJETIVO 1', 'REGISTROS ACTIVIDAD #1', '2024-05-01', '2024-05-01 16:42:25', '2024-05-01 16:59:15'),
-(3, 2, 'ACTIVIDAD #2', 'AMENAZAS Y SEGURDAD', NULL, NULL, 1, NULL, 'OBJETIVO', 'REGISTROS', '2024-05-01', '2024-05-01 19:34:25', '2024-05-01 19:34:25'),
-(4, 3, 'ACTIVIDAD #3', 'AMENAZAS Y SEGURDAD', NULL, NULL, 1, NULL, 'OBJ- 3', 'REGISTROS', '2024-05-01', '2024-05-01 19:34:51', '2024-05-01 19:34:51');
+INSERT INTO `plan_calidads` (`id`, `user_id`, `actividad`, `norma`, `plan_contingencia_id`, `rol_funcion_id`, `amenaza_seguridad_id`, `actividad_contingencia_id`, `objetivo`, `registros`, `estado`, `descripcion`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(2, 2, 'ACTIVIDAD #1', 'PLAN DE CONTIGENCIAS', 1, NULL, NULL, NULL, 'OBJETIVO 1', 'REGISTROS ACTIVIDAD #1', 'OBSERVADO', 'DESC. OBSERVADO', '2024-05-01', '2024-05-01 16:42:25', '2024-11-11 20:46:35'),
+(3, 2, 'ACTIVIDAD #2', 'AMENAZAS Y SEGURDAD', NULL, NULL, 1, NULL, 'OBJETIVO', 'REGISTROS', 'FINALIZADO', 'DESC. FINALIZADO', '2024-05-01', '2024-05-01 19:34:25', '2024-11-11 20:47:08'),
+(4, 3, 'ACTIVIDAD #3', 'AMENAZAS Y SEGURDAD', NULL, NULL, 1, NULL, 'OBJ- 3', 'REGISTROS', 'PENDIENTE', NULL, '2024-05-01', '2024-05-01 19:34:51', '2024-05-01 19:34:51'),
+(7, 3, 'ACTIVIDAD #2', 'PLAN DE CONTIGENCIAS', 3, NULL, NULL, NULL, 'OBJETIVO #2', 'REGISTROS', 'PENDIENTE', NULL, '2024-11-11', '2024-11-11 20:48:30', '2024-11-11 20:48:30'),
+(8, 2, 'ACTIVIDAD TRES', 'AMENAZAS Y SEGURDAD', NULL, NULL, 1, NULL, 'OBJETIVO TRES', 'REGISTRO DEL PLAN TRES', 'PENDIENTE', NULL, '2024-11-11', '2024-11-11 20:48:56', '2024-11-11 20:48:56');
 
 -- --------------------------------------------------------
 
@@ -383,7 +416,7 @@ CREATE TABLE `users` (
   `dir` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `correo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fono` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tipo` enum('ADMINISTRADOR','FUNCIONARIO') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tipo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `foto` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `acceso` int NOT NULL,
@@ -399,7 +432,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `usuario`, `nombre`, `paterno`, `materno`, `ci`, `ci_exp`, `dir`, `correo`, `fono`, `tipo`, `foto`, `password`, `acceso`, `fecha_registro`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'admin', 'admin', NULL, '0', '', '', NULL, '', 'ADMINISTRADOR', NULL, '$2y$10$RrCZZySOwPej2gMFWsrjMe6dLzfaL5Q88h4J75I1FesEBRNPwq1x.', 1, '2023-11-01', NULL, NULL),
 (2, 'JPERES', 'JUAN', 'PERES', 'MAMANI', '1234', 'LP', 'LOS OLIVOS', NULL, '777777', 'FUNCIONARIO', '1699452109_JPERES.jpg', '$2y$10$JJG8Z10ezDVHqVBX5AuW1eAXR.Hlp2ULIQmG9zDvbybbRZeeds/eW', 1, '2023-11-08', '2023-11-08 14:01:49', '2024-06-26 14:12:49'),
-(3, 'MMAMANI', 'MARCOS', 'MAMANI', '', '2222', 'LP', 'LOS OLIVOS', NULL, '77777777', 'FUNCIONARIO', 'default.png', '$2y$10$UQeNqANB5TpP7SsRyjMzD.Ip3uPZDGZZaXKBdJJCEojQzvNCdZmu2', 1, '2024-05-01', '2024-05-01 19:15:47', '2024-05-13 16:33:31');
+(3, 'MMAMANI', 'MARCOS', 'MAMANI', '', '2222', 'LP', 'LOS OLIVOS', NULL, '77777777', 'FUNCIONARIO', 'default.png', '$2y$10$UQeNqANB5TpP7SsRyjMzD.Ip3uPZDGZZaXKBdJJCEojQzvNCdZmu2', 1, '2024-05-01', '2024-05-01 19:15:47', '2024-05-13 16:33:31'),
+(4, 'CCASTRO', 'CARLOS', 'CASTRO', 'MAMANI', '3333', 'LP', 'ZONA LOS OLIVOS', NULL, '7777777', 'SUPERVISOR', 'default.png', '$2y$10$ggFFy/G.d4z2WnAVX2HIf.AK3UzGzSSp0aFx3DB3NxYdYQDn0OKuG', 1, '2024-11-11', '2024-11-11 19:37:59', '2024-11-11 19:37:59');
 
 --
 -- Índices para tablas volcadas
@@ -422,6 +456,13 @@ ALTER TABLE `amenazas_seguridad`
 --
 ALTER TABLE `configuracions`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `controls`
+--
+ALTER TABLE `controls`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `controls_user_id_foreign` (`user_id`);
 
 --
 -- Indices de la tabla `envio_correos`
@@ -509,6 +550,12 @@ ALTER TABLE `configuracions`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de la tabla `controls`
+--
+ALTER TABLE `controls`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `envio_correos`
 --
 ALTER TABLE `envio_correos`
@@ -518,13 +565,13 @@ ALTER TABLE `envio_correos`
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `personal_access_tokens`
@@ -542,7 +589,7 @@ ALTER TABLE `plan_archivos`
 -- AUTO_INCREMENT de la tabla `plan_calidads`
 --
 ALTER TABLE `plan_calidads`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `plan_contingencias`
@@ -566,7 +613,17 @@ ALTER TABLE `roles_funciones`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `controls`
+--
+ALTER TABLE `controls`
+  ADD CONSTRAINT `controls_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

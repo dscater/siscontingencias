@@ -18,10 +18,28 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        "usuario", "nombre", "paterno", "materno", "ci", "ci_exp", "fecha_nac",
-        "genero", "cargo", "fecha_ingreso", "taller", "dir", "fono",
-        "tipo_personal", "p_discapacidad", "tipo", "foto", "validez_credencial",
-        "password", "estado", "fecha_registro", "acceso"
+        "usuario",
+        "nombre",
+        "paterno",
+        "materno",
+        "ci",
+        "ci_exp",
+        "fecha_nac",
+        "genero",
+        "cargo",
+        "fecha_ingreso",
+        "taller",
+        "dir",
+        "fono",
+        "tipo_personal",
+        "p_discapacidad",
+        "tipo",
+        "foto",
+        "validez_credencial",
+        "password",
+        "estado",
+        "fecha_registro",
+        "acceso"
     ];
 
     /**
@@ -99,5 +117,10 @@ class User extends Authenticatable
     public function valoracion_user()
     {
         return $this->hasMany(ValoracionUser::class, 'user_id');
+    }
+
+    public function plan_seguimientos()
+    {
+        return $this->hasMany(PlanSeguimiento::class, 'user_id');
     }
 }

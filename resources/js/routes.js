@@ -43,6 +43,21 @@ export default new Router({
                 .default,
         },
 
+        // controls
+        {
+            path: "/controls",
+            name: "controls.index",
+            component: require("./components/modulos/controls/index.vue")
+                .default,
+        },
+        {
+            path: "/controls/seguimiento/:id",
+            name: "controls.seguimiento",
+            component: require("./components/modulos/controls/Seguimiento.vue")
+                .default,
+            props: true,
+        },
+
         // Plan Contingencias
         {
             path: "/plan_contingencias",

@@ -24,6 +24,7 @@ class CreatePlanCalidadsTable extends Migration
             $table->unsignedBigInteger("actividad_contingencia_id")->nullable();
             $table->text("objetivo");
             $table->text("registros");
+            $table->string("estado");
             $table->date("fecha_registro");
             $table->timestamps();
         });
