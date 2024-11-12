@@ -83,6 +83,22 @@
                                                         <b-button
                                                             size="sm"
                                                             pill
+                                                            variant="outline-info"
+                                                            class="btn-flat btn-block"
+                                                            title="Ver archivos"
+                                                            @click="
+                                                                verArchivos(
+                                                                    row.item
+                                                                )
+                                                            "
+                                                        >
+                                                            <i
+                                                                class="fa fa-paperclip"
+                                                            ></i>
+                                                        </b-button>
+                                                        <b-button
+                                                            size="sm"
+                                                            pill
                                                             variant="outline-warning"
                                                             title="Editar"
                                                             class="btn-flat btn-block"
@@ -141,14 +157,23 @@
             @close="muestra_modal = false"
             @envioModal="getControls"
         ></Estado>
+        <Archivos
+            :muestra_modal="muestra_modal_archivos"
+            :accion="modal_accion_archivos"
+            :plan_calidad="oPlanCalidad"
+            @close="muestra_modal_archivos = false"
+            @envioModal="getPlanCalidads"
+        ></Archivos>
     </div>
 </template>
 
 <script>
 import Estado from "./Estado.vue";
+import Archivos from "../plan_calidads/Archivos.vue";
 export default {
     components: {
         Estado,
+        Archivos,
     },
     props: ["id"],
     data() {
@@ -183,6 +208,8 @@ export default {
             }),
             muestra_modal: false,
             modal_accion: "nuevo",
+            muestra_modal_archivos: false,
+            modal_accion_archivos: "nuevo",
             oPlanCalidad: {
                 id: 0,
                 estado: "",
@@ -236,6 +263,21 @@ export default {
                     this.totalRows = res.data.total;
                     this.userSeguimiento = res.data.user;
                 });
+        },
+        verArchivos(item) {
+            this.oPlanCalidad.id = item.id;
+            this.oPlanCalidad.user_id = item.user_id;
+            this.oPlanCalidad.actividad = item.actividad;
+            this.oPlanCalidad.norma = item.norma;
+            this.oPlanCalidad.plan_contingencia_id = item.plan_contingencia_id;
+            this.oPlanCalidad.rol_funcion_id = item.rol_funcion_id;
+            this.oPlanCalidad.amenaza_seguridad_id = item.amenaza_seguridad_id;
+            this.oPlanCalidad.actividad_contingencia_id =
+                item.actividad_contingencia_id;
+            this.oPlanCalidad.objetivo = item.objetivo;
+            this.oPlanCalidad.registros = item.registros;
+            this.oPlanCalidad.plan_archivos = item.plan_archivos;
+            this.muestra_modal_archivos = true;
         },
         onFiltered(filteredItems) {
             // Trigger pagination to update the number of buttons/pages due to filtering

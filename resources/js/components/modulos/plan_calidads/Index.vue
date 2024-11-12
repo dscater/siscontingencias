@@ -292,6 +292,8 @@ export default {
                 { key: "objetivo", label: "Objetivo", sortable: true },
                 { key: "plan_archivos.length", label: "Total Archivos" },
                 { key: "registros", label: "Registros" },
+                { key: "estado", label: "Estado" },
+                { key: "descripcion", label: "Descripción" },
                 {
                     key: "fecha_registro_t",
                     label: "Fecha de registro",

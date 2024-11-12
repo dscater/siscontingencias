@@ -55,6 +55,7 @@
                                                 <i class="fa fa-download"></i>
                                             </button>
                                             <button
+                                                v-if="user.tipo != 'SUPERVISOR'"
                                                 class="btn btn-danger btn-small"
                                                 @click="eliminarArchivo(item)"
                                             >
