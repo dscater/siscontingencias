@@ -99,6 +99,7 @@ class PlanCalidadController extends Controller
                 ->get()->first();
             if (!$existe) {
                 $existe = Control::create([
+                    "user_id" => $nuevo_plan_calidad->user_id,
                     "asignados" => 1,
                     "pendientes" => 1,
                     "observados" => 0,
